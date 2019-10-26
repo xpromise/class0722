@@ -6,7 +6,6 @@
   3. 关闭文件
     fs.closeSync(fd)
 
-
   1. 打开文件
   2. 写入文件
     fs.writeSync(fd, buffer[, offset[, length[, position]]])
