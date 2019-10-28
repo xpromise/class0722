@@ -6,12 +6,12 @@
     R - read
         db.collection.find(查询条件, 投影)
         db.collection.findOne(查询条件, 投影);
-                        操作符：
+        操作符：
           1. > >= < <= !=  $gt $gte $lt $lte $ne
           2. 或 $in $or
           3. 正则表达式
           4. $where
-                        投影：过滤不必要的数据  
+        投影：过滤不必要的数据
     U - update
         db.collection.updateOne(查询条件，更新内容)
         db.collection.updateMany(查询条件，更新内容)
@@ -19,6 +19,7 @@
         db.collection.deleteOne(查询条件)
         db.collection.deleteMany(查询条件)
 */
+/*
 
 use test
 db.students.insert({name: 'rose', age: 16});
@@ -49,3 +50,5 @@ db.students.updateOne({name: 'jack'}, {$set: {age: 20}});
 db.students.find({})
 
 db.students.deleteOne({name: 'jack'});
+
+*/
