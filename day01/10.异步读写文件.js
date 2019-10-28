@@ -71,8 +71,8 @@ const { promisify } = require('util');
   }
 });*/
 
-
-/*const openAsync = (path, flags) => new Promise((resolve, reject) => {
+/*
+const openAsync = (path, flags) => new Promise((resolve, reject) => {
   open(path, flags, (err, fd) => {
     if (!err) resolve(fd);
     else reject(err);
@@ -101,8 +101,8 @@ const closeAsync = (fd) => new Promise((resolve, reject) => {
     if (!err) resolve();
     else reject(err);
   })
-});*/
-
+});
+*/
 
 const openAsync = promisify(open);
 const statAsync = promisify(stat);
