@@ -6,7 +6,6 @@
    4. 通过schema对象创建集合 Model
    5. 通过Model对Document操作
  */
-
 // 1. 引入mongoose
 const mongoose = require('mongoose');
 // 2. 连接数据库
