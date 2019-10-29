@@ -27,7 +27,7 @@ const server = http.createServer((request, response) => {
     reduce
       如果将来返回值：长度和值都需要变
    */
-  // /?username=aaa&password=bbb
+  // /user?username=aaa&password=bbb
   // ["username=aaa", "password=bbb"]
   const querystring = request.url.split('?')[1].split('&').reduce((previous, current) => {
     /*
