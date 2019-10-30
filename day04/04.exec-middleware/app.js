@@ -2,10 +2,14 @@ const express = require('express');
 const { resolve } = require('path');
 require('./db');
 const Users = require('./models/users');
-
+/*
+  解决反复重启服务器的问题：
+    npm i nodemon -g
+    nodemon app.js
+ */
 const app = express();
 // 使用内置中间件：向外暴露静态资源
-app.use(express.static(resolve(__dirname, 'public')));
+app.use(express.static(resolve(__dirname, 'public'), {extensions: ['html', 'css', 'js']}));
 // 设置路由，处理请求，返回响应
 app.use(express.urlencoded({extended: true}));
 // 正则校验： 应用级中间件：复用代码
