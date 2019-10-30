@@ -1,11 +1,10 @@
 const express = require('express');
+const { resolve } = require('path');
 require('./db');
 const Users = require('./models/users');
 
 const app = express();
-
 // 设置路由，处理请求，返回响应
-
 // 处理登录
 app.get('/login', async (req, res) => {
   // 1. 获取用户提交的表单数据
@@ -76,7 +75,19 @@ app.get('/register', async (req, res) => {
   // 4. 没有注册过才能保存用户数据
   await Users.create({username, password, email});
   // 5. 返回成功响应
-  res.redirect('');
+  res.redirect('/login.html');
+});
+// 返回登录页面
+app.get('/login.html', (req, res) => {
+  res.sendFile(resolve(__dirname, 'public/login.html'));
+});
+// 返回注册页面
+app.get('/register.html', (req, res) => {
+  res.sendFile(resolve(__dirname, 'public/register.html'));
+});
+
+app.get('/css/index.css', (req, res) => {
+  res.sendFile(resolve(__dirname, 'public/css/index.css'));
 });
 
 app.listen(3000, (err) => {
