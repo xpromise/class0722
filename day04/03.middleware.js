@@ -49,14 +49,14 @@ app.use((req, res, next) => {
   console.log(333);
   res.send('返回响应~');
 });*/
-
 // 应用级中间件
 app.use((req, res, next) => {
   console.log(req.headers.referer); // 请求来源地址
-  const safe = ['http://localhost:3000'];
+  const safe = ['http://localhost:3000', 'http://localhost:63342'];
   const { referer } = req.headers;
   // 防盗链
-  if (safe.filter((url) => !referer.startsWith(url)).length === 1) {
+  // if (safe.filter((url) => !referer.startsWith(url)).length === 1) {
+  if (!safe.some((url) => referer.startsWith(url))) {
     res.status(403).end();
     return;
   }
