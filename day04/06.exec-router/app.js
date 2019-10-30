@@ -1,6 +1,6 @@
 const express = require('express');
-const { resolve } = require('path');
-const { PORT } = require('./config');
+const {resolve} = require('path');
+const {PORT} = require('./config');
 require('./db');
 
 const userRouter = require('./routers/user');

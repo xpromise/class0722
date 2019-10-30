@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>标题</title>
+  </head>
+  <body>
+    <!-- npm i pug    npm i pug-cli -g-->
+    <!-- 运行pug指令： pug -P(不压缩) -w(监视文件变化，自动render) xxx-->
+    <!-- 标签属性--><a class="link" href="http://www.baidu.com" id="link"></a>
+    <!-- style-->
+    <div class="box" style="width:100px;height:100px;background-color:pink;" id="box1"></div>
+    <div id="box2" style="width:100px;height:100px;background-color:pink;"></div>
+    <!-- 自定义属性和文本-->
+    <p data-src="xxx">这是一段文本</p>
+    <p data-xxx="yyy">这是另一段文本</p>
+    <!-- 定义变量。没有输出。在模板中可以直接使用变量-->
+    <!-- 使用变量-->
+    <p>damu</p>
+    <script>
+      const age = 18;
+      
+    </script>
+    <!-- 条件判断-->
+    <p>
+      flag的值是false
+      
+    </p>
+    <!-- 循环-->
+    <p>name：damu</p>
+    <p>age：38</p>
+    <p>name：damu
+      
+    </p>
+    <p>age：38
+      
+    </p>
+    <p>0--1</p>
+    <p>1--2</p>
+    <p>2--3</p>
+    <p>3--4</p>
+    <p>0：1</p>
+    <p>1：2</p>
+    <p>2：3</p>
+    <p>3：4</p>
+  </body>
+</html>
