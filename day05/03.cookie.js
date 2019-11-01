@@ -15,7 +15,7 @@ const app = express();
         req.cookies
       清除
         res.clearCookie(key)
-    3. 失效性
+    3. 时效性
       cookie默认是会话存储。（关闭浏览器会话就结束。结束就会自动销毁cookie）
       持久化cookie
         res.cookie('name', 'jack', { maxAge: 1000 * 3600 * 24 * 7 });  7天后过期
@@ -35,12 +35,15 @@ app.get('/', (req, res) => {
     maxAge: 1000 * 3600 * 24 * 7, // 有效期
     httpOnly: true // 只能在服务端获取，客户端获取不了
   });*/
+
   // 获取cookie
   // console.log(req.cookies); // undefined
   // console.log(req.headers.cookie);
+
   // 清除cookie
   res.clearCookie('name');
   // res.cookie('name', '', {maxAge: 0});
+
   // 返回响应
   res.send('返回响应~');
 });

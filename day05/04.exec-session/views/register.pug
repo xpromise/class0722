@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title 注册
+  body
+    //- 定义混合
+    mixin errMsg(text)
+      if (text)
+        span(style={color: 'red'}) #{text}
+
+    h1 用户注册
+    form(action="http://localhost:3000/register", method="post")
+      |用户名:
+      input(type="text", name="username", value=username)
+      +errMsg(usernameErr)
+      br
+      |密码:
+      input(type="password", name="password")
+      +errMsg(passwordErr)
+      br
+      |确认密码:
+      input(type="password", name="rePassword")
+      +errMsg(rePasswordErr)
+      br
+      |邮箱:
+      input(type="text", name="email", value=email)
+      +errMsg(emailErr)
+      br
+      input(type="submit", value="注册")
