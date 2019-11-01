@@ -8,12 +8,12 @@ html(lang="en")
     //- 定义混合
     mixin errMsg(text)
       if (text)
-        span(style={color: 'red'}) #{text}
+        span(style={color: 'red'})=text
 
     h1 用户登录
     form(action="http://localhost:3000/login", method="post")
       |用户名:
-      input(type="text", name="username")
+      input(type="text", name="username", value=username)
       //- 使用混合
       +errMsg(usernameErr)
       br

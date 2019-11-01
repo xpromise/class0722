@@ -12,7 +12,7 @@ html(lang="en")
     h1 用户注册
     form(action="http://localhost:3000/register", method="post")
       |用户名:
-      input(type="text", name="username")
+      input(type="text", name="username", value=username)
       +errMsg(usernameErr)
       br
       |密码:
@@ -24,7 +24,7 @@ html(lang="en")
       +errMsg(rePasswordErr)
       br
       |邮箱:
-      input(type="text", name="email")
+      input(type="text", name="email", value=email)
       +errMsg(emailErr)
       br
       input(type="submit", value="注册")

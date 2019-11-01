@@ -17,10 +17,10 @@ router.post('/login', async (req, res) => {
     if (user.password === password) {
       res.send('登录成功~');
     } else {
-      res.send('密码错误');
+      res.render('login.pug', { passwordErr: '密码错误', username });
     }
   } else {
-    res.send('用户名不存在~');
+    res.render('login.pug', { usernameErr: '用户名不存在', username });
   }
 });
 // 处理注册
@@ -33,18 +33,18 @@ router.post('/register', async (req, res) => {
   if (result) {
     // 找到了，用户名或邮箱被注册过
     if (username === result.username) {
-      res.send('用户名被注册了~');
+      res.render('register.pug', { usernameErr: '用户名被注册了~', username, email});
       return;
     }
     if (email === result.email) {
-      res.send('邮箱被注册了~');
+      res.render('register.pug', {emailErr: '邮箱被注册了~', username, email});
       return;
     }
   }
   // 4. 没有注册过才能保存用户数据
   await Users.create({username, password, email});
   // 5. 返回成功响应
-  res.redirect('/login.html');
+  res.redirect('/login');
 });
 
 // 暴露出去

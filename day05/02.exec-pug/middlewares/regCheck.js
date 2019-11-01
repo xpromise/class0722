@@ -9,7 +9,7 @@ const regCheck = (req, res, next) => {
   const isRegister = req.path === '/register';
   const name = isRegister ? 'register.pug' : 'login.pug';
 
-  const errMsg = {};
+  const errMsg = { username, email };
 
   // 进行校验
   if (!usernameReg.test(username)) {
@@ -25,7 +25,7 @@ const regCheck = (req, res, next) => {
     errMsg.rePasswordErr = '两次密码输入不一致';
   }
 
-  if (Object.keys(errMsg).length) {
+  if (Object.keys(errMsg).length > 2) {
     res.render(name, errMsg);
     return;
   }
