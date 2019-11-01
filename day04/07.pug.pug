@@ -2,13 +2,12 @@ doctype html
 html
   head
     meta(charset='utf8')
-    title.
-      标题
+    title 标题111
   body
     // npm i pug    npm i pug-cli -g
     // 运行pug指令： pug -P(不压缩) -w(监视文件变化，自动render) xxx
     // 标签属性
-    a(href="http://www.baidu.com",class="link", id="link")
+    a(href="http://www.baidu.com", class="link", id="link")
     // style
     div.box(style={width: '100px', height: '100px', 'background-color': 'pink'}, id='box1')
     div#box2(style={width: '100px', height: '100px', 'background-color': 'pink'})
@@ -49,3 +48,19 @@ html
     each value, index in arr
       p.
         #{index}：#{value}
+
+    //- 定义混合 mixin：单个文件内复用结构用混合
+    mixin xxx(name, age)
+      ul
+        li 姓名: #{name}
+        li 年龄: #{age}
+        block
+
+    // 使用混合
+    +xxx('jack', 18)
+      li 性别: 男
+
+    +xxx('rose', 17)
+
+    // 使用include: 多个文件复用结构用include
+    include 08.other.pug

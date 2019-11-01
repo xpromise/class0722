@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+  Function.prototype.myCall = function (target, ...args) {
+    /*
+      target 代表 obj
+      myCall的this 代表 fn
+     */
+    // 给obj添加一个fn方法
+    target.__proto__._fn = this;
+    // 获取fn函数调用的返回值
+    const result = target._fn(...args);
+    // 删除fn方法
+    delete target.__proto__._fn;
+    // 将result作为myCall方法的返回值
+    return result;
+  };
+
+  Function.prototype.myApply = function (target, args) {
+    /*
+      target 代表 obj
+      myCall的this 代表 fn
+     */
+    // 给obj添加一个fn方法
+    target.__proto__._fn = this;
+    // 获取fn函数调用的返回值
+    const result = target._fn(...args);
+    // 删除fn方法
+    delete target.__proto__._fn;
+    // 将result作为myCall方法的返回值
+    return result;
+  };
+
+  Function.prototype.myBind = function (target, ...args1) {
+    /*
+      this 指向 fn
+     */
+    const that = this;
+
+    function newFn(...args2) {
+      /*// 给obj添加一个fn方法
+      target.__proto__._fn = that;
+      // 获取fn函数调用的返回值
+      const result = target._fn(...args1, ...args2);
+      // 删除fn方法
+      delete target.__proto__._fn;
+      // 将result作为myCall方法的返回值
+      return result;*/
+      return that.myCall(target, ...args1, ...args2);
+    };
+    // 获取原型属性
+    newFn.prototype = this.prototype;
+
+    return newFn;
+  };
+
+
+  function fn(a, b, c) {
+    console.log(this);
+    console.log(a, b, c);
+    return 123;
+  }
+
+  const obj = {a: 1};
+
+  const result = fn.myCall(obj, 1, 2, 3);
+  console.log(result);
+
+
+  const newFn = fn.myBind(obj, 1);
+  newFn(2, 3, 4);
+
+</script>
+</body>
+</html>
