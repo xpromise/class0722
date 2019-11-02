@@ -37,7 +37,7 @@
         $province.append(html);*/
 
         const html = result.data.reduce(function (p, c) {
-          p += `<option>${c.name}</option>`;
+          p += `<option value=${c.province}>${c.name}</option>`;
           return p;
         }, '');
         $province.append(html);
@@ -46,6 +46,45 @@
         // 请求失败
         alert(result.error);
       }
+    });
+
+    // 当省份发生变化，请求城市数据
+    $province.change(function () {
+      // 干掉区县数据
+      $county.html('<option>请选择区(县)</option>');
+      // 获取province
+      const province = this.value;
+      // 请求城市数据
+      $.get('/city', { province }, function (result) {
+        if (result.status === 0) {
+          const html = result.data.reduce(function (p, c) {
+            p += `<option value=${c.city}>${c.name}</option>`;
+            return p;
+          }, '<option>请选择城市</option>');
+          $city.html(html);
+        } else {
+          alert(result.error);
+        }
+      })
+    });
+
+    // 当城市发生变化，请求区县数据
+    $city.change(function () {
+      // 获取province、city
+      const province = $province.val();
+      const city = this.value;
+      // 请求区县数据
+      $.get('/county', { province, city }, function (result) {
+        if (result.status === 0) {
+          const html = result.data.reduce(function (p, c) {
+            p += `<option value=${c.county}>${c.name}</option>`;
+            return p;
+          }, '<option>请选择区(县)</option>');
+          $county.html(html);
+        } else {
+          alert(result.error);
+        }
+      })
     })
 
   })
