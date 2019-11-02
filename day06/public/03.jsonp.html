@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jsonp</title>
+</head>
+<body>
+  <button id="btn">按钮</button>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript">
+    /*
+      同源策略：协议名、域名、端口号三者必须完全一致，才符合同源策略。只要有一个不一样，就违背同源策略，产生跨域。（导致ajax请求失败）
+      程序员凭着聪明才智想出来的方法：jsonp(json with padding)
+      原理：
+        利用script天然跨域特性来解决跨域
+      特点：
+        1. 只能发GET请求
+        2. 兼容性极好
+     */
+    /*document.getElementById('btn').onclick = function () {
+      // 1. 创建script标签
+      const script = document.createElement('script');
+      // 2. 设置script标签的src属性：设置请求地址
+      script.src = 'http://localhost:3000/jsonp?callback=fn';
+      // 3. 定义fn回调函数: 必须是全局函数
+      window.fn = function (data) {
+        // 响应成功的回调
+        console.log(data); // 响应成功的数据
+      };
+      // 4. 将script添加body中，才能生效
+      document.body.appendChild(script);
+    }*/
+
+    $.getJSON('http://localhost:3000/jsonp?callback=?', function (data) {
+      console.log(data);
+    })
+
+  </script>
+</body>
+</html>

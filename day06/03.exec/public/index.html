@@ -29,20 +29,20 @@
         /*result.data.forEach(function (item) {
           $province.append(`<option>${item.name}</option>`);
         })*/
-
-        /*let html = '';
+        /*
+        let html = '';
         result.data.forEach(function (item) {
           html += `<option>${item.name}</option>`;
         });
-        $province.append(html);*/
-
+        $province.append(html);
+        */
         const html = result.data.reduce(function (p, c) {
           p += `<option value=${c.province}>${c.name}</option>`;
           return p;
         }, '');
         $province.append(html);
-
-      } else {
+      }
+      else {
         // 请求失败
         alert(result.error);
       }
@@ -85,7 +85,7 @@
           alert(result.error);
         }
       })
-    })
+    });
 
   })
 </script>
