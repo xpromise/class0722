@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ajax</title>
+</head>
+<body>
+<button id="btn">按钮</button>
+<script type="text/javascript">
+  document.getElementById('btn').onclick = function () {
+    // 发送ajax请求
+    /*
+      1. 创建xhr实例对象
+      2. 绑定事件监听：监听响应结果
+      3. 设置请求信息
+        请求方式
+        请求地址
+        请求参数
+        请求头 content-type
+      4. 发送请求
+
+      注意：发送ajax请求的页面必须通过自己服务器访问，不能通过webstorm去访问。
+            一旦通过webstorm访问，就会产生跨域问题。
+     */
+    // 1. 创建xhr实例对象
+    const xhr = new XMLHttpRequest();
+    // 2. 绑定事件监听：监听响应结果
+    xhr.onreadystatechange = function () {
+      /*
+        当readyState的值发生变化时，触发的事件
+          0: 代表xhr刚刚创建。readyState的初始值就是0
+          1: 代表open方法调用了，但send方法还没有调用。（还没发送请求，还来得及设置请求头）
+          2：代表send方法调用了（已经发送请求），并接受到部分响应结果（接收到了响应首部：响应头和响应状态码）
+          3：代表接受了部分/全部响应体数据（如果数据较大，只接受了一部分。如果较小，就全部接受了）
+          4：代表接受完全部响应体数据
+
+         xhr.status 响应状态码
+       */
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // 响应成功，得到响应体数据
+        console.log(xhr.responseText);
+      }
+
+    };
+    // 3. 设置请求信息
+    xhr.open('GET', 'http://localhost:3000?username=jack&age=18');
+    // xhr.setRequestHeader('xxx', 'yyy');
+    // 4. 发送请求
+    xhr.send();
+  }
+</script>
+</body>
+</html>
