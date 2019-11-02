@@ -40,14 +40,25 @@
         // 响应成功，得到响应体数据
         console.log(xhr.responseText);
       }
-
     };
     // 3. 设置请求信息
-    xhr.open('GET', 'http://localhost:3000?username=jack&age=18');
-    // xhr.setRequestHeader('xxx', 'yyy');
+    /*
+      GET请求默认会被浏览器缓存起来：
+        chrome/firefox默认走类似协商缓存（会访问服务器，由服务器决定是否走缓存）。所以如果服务器响应变了，就不走缓存返回最新的响应结果
+        ie默认走类似强制缓存（不会访问服务器，直接读取浏览器本地缓存）。
+          问题：如果服务器响应变了，ie接受不到最新的内容
+     */
+    // xhr.open('GET', 'http://localhost:3000?username=jack&age=18&date=' + Date.now());
+    xhr.open('POST', 'http://localhost:3000?aa=bb');
+    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+    // xhr.setRequestHeader('content-type', 'application/json');
     // 4. 发送请求
-    xhr.send();
+    xhr.send('username=jack&age=18'); // urlencoded编码
+    // xhr.send(JSON.stringify({username: 'jack', age: 18})); // json
+
+    console.log('代码执行完了~');
   }
+
 </script>
 </body>
 </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jqueryAjax</title>
+</head>
+<body>
+<button id="btn">按钮</button>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+  /*
+    等页面DOM元素构建完，就立即出发
+   */
+  $(function () {
+
+    $('#btn').click(function () {
+      // 发送ajax请求
+      /*$.ajax({
+        // method: 'GET', // 请求方式
+        method: 'POST', // 请求方式
+        url: 'http://localhost:3000', // 请求地址
+        /!*data: { // 请求参数
+          username: 'jack',
+          age: 18
+        },*!/
+        data: JSON.stringify({ // 请求参数
+          username: 'jack',
+          age: 18
+        }),
+        headers: { // 请求头
+          // 'content-type': 'application/x-www-form-urlencoded'
+          'content-type': 'application/json'
+        },
+        success(data) { // 响应成功的回调函数
+          console.log(data);
+        },
+        error(err) { // 响应失败的回调函数
+          console.log(err);
+        }
+      })*/
+
+      /*$.get('http://localhost:3000', {username: 'jack', age: 18}, function (data) {
+        console.log(data);
+      });*/
+
+      $.post('http://localhost:3000', {username: 'jack', age: 18}, function (data) {
+        console.log(data);
+      });
+
+
+    })
+  });
+  /*window.addEventListener('DOMContentLoaded', function () {
+
+  })*/
+  /*
+    等页面所有元素/资源全部加载完，才触发的回调函数
+   */
+  /*window.onload = function () {
+
+  }*/
+</script>
+</body>
+</html>
