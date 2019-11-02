@@ -6,7 +6,16 @@
 </head>
 <body>
 <button id="btn">按钮</button>
+<input type="text">
 <script type="text/javascript">
+  /*
+    总结ajax:
+      1. 一个在客户端发送异步请求的技术
+      2. 特点：
+        无刷新更新页面
+      3. 工作原理
+        浏览器有一个ajax引擎负责发送请求
+   */
   document.getElementById('btn').onclick = function () {
     // 发送ajax请求
     /*
