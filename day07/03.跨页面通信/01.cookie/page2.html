@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<button id="btn1">设置cookie</button>
+<button id="btn2">获取cookie</button>
+<script type="text/javascript">
+  document.getElementById('btn1').onclick = function () {
+    document.cookie = 'name=rose';
+  };
+
+  document.getElementById('btn2').onclick = function () {
+    console.log(document.cookie);
+  };
+</script>
+</body>
+</html>

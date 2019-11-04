@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>web storage</title>
+</head>
+<body>
+<script type="text/javascript">
+  /*
+    web storage: 浏览器本地离线存储方案
+      localStorage  本地持久化存储（永久）
+      sessionStorage 本地会话存储（临时）
+        xxxStorage.setItem(key, value) 设置
+        xxxStorage.getItem(key) 读取
+        xxxStorage.removeItem(key) 删除单个
+        xxxStorage.clear() 删除全部
+      存储容量： 5-10M
+      作用：
+        1. 用来存储数据
+        2. 跨页面通信
+          - cookie
+            需求：A页面向B页面通信
+              A页面设置cookie，将数据放入cookie中
+              B页面获取cookie得到数据
+            问题：B页面并不知道数据是什么时候设置的
+          - web storage
+            绑定storage事件
+            A页面设置localStorage
+            B页面绑定storage事件实时接收
+   */
+
+  // localStorage.setItem('name', 'jack');
+  // sessionStorage.setItem('name', 'rose');
+  // console.log(localStorage.getItem('name'));
+  // localStorage.removeItem('name');
+  // localStorage.clear();
+
+
+</script>
+</body>
+</html>

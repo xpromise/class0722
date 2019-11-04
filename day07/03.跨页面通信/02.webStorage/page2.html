@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+  // B页面实时获取A页面通信的数据
+  window.addEventListener('storage', function (event) {
+    console.log(event);
+    /*
+      event.key
+      event.oldValue 上一次的值（默认为null）
+      event.newValue 当前最新的值
+     */
+  })
+</script>
+</body>
+</html>
