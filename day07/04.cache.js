@@ -1,6 +1,9 @@
 const express = require('express');
-const app = express();
+const { createReadStream, stat, watchFile } = require('fs');
+const { resolve } = require('path');
+const createEtag = require('etag');
 
+const app = express();
 /*
   缓存策略：
     1. 强制缓存
@@ -34,9 +37,60 @@ const app = express();
         如果都没有变，就返回304。（客户端一旦接收到响应状态码是304就会自动读取缓存）
         如果有一个变了，就返回最新的资源，加上最新的etag和last-modified
  */
+// app.use(express.static('public'));
 
 app.get('/', (req, res) => {
+  // 返回index.html
+  const rs = createReadStream(resolve(__dirname, 'public/index.html'));
+  rs.pipe(res);
+});
 
+// 强制缓存
+app.get('/js/index.js', (req, res) => {
+  // 设置强制缓存
+  res.set('cache-control', `max-age=${86400}`);
+  // 返回index.js
+  const rs = createReadStream(resolve(__dirname, 'public/js/index.js'));
+  rs.pipe(res);
+});
+
+// 文件内容唯一标识
+let etag = '';
+let lastModified = '';
+// 读取文件内容
+stat(resolve(__dirname, 'public/css/index.css'), function (err, stats) {
+  if (!err) {
+    // 将stats转换成etag的标识
+    etag = createEtag(stats);
+    lastModified = new Date().toGMTString();
+  }
+});
+
+// 监视文件的变化，一旦文件变化就会触发后面的回调
+watchFile(resolve(__dirname, 'public/css/index.css'), function (currStats, prevStats) {
+  // 将stats转换成etag的标识
+  etag = createEtag(currStats);
+  lastModified = new Date().toGMTString();
+});
+
+// 协商缓存
+app.get('/css/index.css', (req, res) => {
+  // 第二次：判断etag和lastModified的值是否变化
+  const ifNoneMatch = req.headers['if-none-match'];
+  const ifModifiedSince = req.headers['if-modified-since'];
+
+  if (ifNoneMatch === etag && ifModifiedSince === lastModified) {
+    // 说明资源没有变化，命中协商缓存
+    res.status(304).end();
+    return;
+  }
+
+  // 第一次：设置协商缓存
+  res.set('etag', etag);
+  res.set('last-modified', lastModified);
+  // 返回index.css
+  const rs = createReadStream(resolve(__dirname, 'public/css/index.css'));
+  rs.pipe(res);
 });
 
 app.listen(3000, (err) => {
