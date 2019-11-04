@@ -3,7 +3,7 @@ const sha1 = require('sha1');
 
 const app = express();
 /*
-  验证服务器有消息：
+  验证服务器有效性：
     1. 在测试号管理页面添加正确的url地址（必须外网能访问的地址） 和 token
       本地 http://localhost:3000 通过内网穿透工具映射外网能访问的地址 ngrok
       ngrok http 端口号
