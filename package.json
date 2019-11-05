@@ -1,0 +1,27 @@
+{
+  "name": "day03",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01.函数节流和防抖.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-mongo": "^3.1.2",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "mongoose": "^5.7.7",
+    "pug": "^2.0.4",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.8",
+    "sha1": "^1.1.1",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "cross-env": "^6.0.3"
+  }
+}

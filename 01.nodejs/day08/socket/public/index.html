@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>chat</title>
+</head>
+<body>
+  <script src="./socket.js"></script>
+  <script>
+    // 1. 引入socket.io  
+    // 2. 连接上远程socket
+    const socket = io('ws://localhost:3000');
+    // 3. 向服务端发送消息
+    socket.emit('client_to_server', 'hello everyone!');
+    // 4. 接受消息
+    socket.on('server_to_client', function (msg) {
+      console.log(msg);
+    });
+  
+  </script>
+</body>
+</html>
