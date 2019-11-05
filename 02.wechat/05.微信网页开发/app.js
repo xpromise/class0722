@@ -8,6 +8,8 @@ const fetchTicket = require('./wechat/ticket');
 
 const app = express();
 
+
+
 app.get('/search', async (req, res) => {
   // 生成timestamp, 单位s
   const timestamp = Math.round(Date.now() / 1000);
