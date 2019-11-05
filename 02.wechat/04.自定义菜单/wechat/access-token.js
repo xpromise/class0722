@@ -29,6 +29,8 @@
           发送请求，获取access_token，持久化存储到数据库中（access_token, expires_in）
  */
 // 引入数据库为了测试
+require('../db');
+
 const request = require('request-promise-native');
 const Tokens = require('../models/tokens');
 const { appID, appsecret } = require('../config');
@@ -79,10 +81,18 @@ async function getAccessToken() {
   // 修改过期时间: 提前5分钟刷新
   result.expires_in = Date.now() + 7200 * 1000 - 5 * 60 * 1000;
   // 存储到数据库中
-  await Tokens.create({
-    accessToken: result.access_token,
-    expiresIn: result.expires_in
-  });
+  const token = await Tokens.findOne({});
+  if (token) {
+    await Tokens.updateOne({}, {$set: {
+        accessToken: result.access_token,
+        expiresIn: result.expires_in
+    }});
+  } else {
+    await Tokens.create({
+      accessToken: result.access_token,
+      expiresIn: result.expires_in
+    });
+  }
   // 返回出去
   return result;
 }
