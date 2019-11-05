@@ -18,8 +18,8 @@ const menus =  {
       "sub_button":[
         {
           "type":"view",
-          "name":"欢迎来到尚硅谷💋",
-          "url":"http://www.atguigu.com/"
+          "name":"微信SDK测试页面",
+          "url":"http://84455f89.ngrok.io"
         },
         {
           "type": "scancode_waitmsg",
@@ -64,6 +64,7 @@ const menus =  {
 class Wechat {
   async createMenu() {
     const { accessToken } = await fetchAccessToken();
+
     const result = await request({
       method: 'POST',
       url: `https://api.weixin.qq.com/cgi-bin/menu/create?access_token=${accessToken}`,
@@ -73,12 +74,23 @@ class Wechat {
     return result;
   }
 
+  async deleteMenu() {
+    const { accessToken } = await fetchAccessToken();
+    const result = await request({
+      method: 'GET',
+      url: `https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=${accessToken}`,
+      json: true,
+    });
+    return result;
+  }
 }
 
 
 const wechat = new Wechat();
 
 (async () => {
-  const result = await wechat.createMenu();
+  let result = await wechat.deleteMenu();
+  console.log(result);
+  result = await wechat.createMenu();
   console.log(result);
 })();
