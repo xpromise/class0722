@@ -3,6 +3,7 @@
  */
 const request = require('request-promise-native');
 const fetchAccessToken = require('./access-token');
+const { url } = require('../config');
 
 // 菜单的配置
 // http://bj.96weixin.com/tools/emoji
@@ -19,7 +20,7 @@ const menus =  {
         {
           "type":"view",
           "name":"微信SDK测试页面",
-          "url":"http://84455f89.ngrok.io"
+          "url": `${url}/search`
         },
         {
           "type": "scancode_waitmsg",

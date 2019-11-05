@@ -5,6 +5,8 @@ html(lang="en")
     meta(name="viewport", content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover")
     title 微信网页开发
   body
+    button#start 开始录音
+    button#end 结束录音
     script(src="http://res2.wx.qq.com/open/js/jweixin-1.4.0.js")
     script.
       wx.config({
@@ -23,7 +25,7 @@ html(lang="en")
       })
 
       // 检查js-sdk提供的接口是否可以使用
-      wx.checkJsApi({
+      /* wx.checkJsApi({
         jsApiList: ['updateAppMessageShareData',
           'updateTimelineShareData',
           'startRecord',
@@ -34,7 +36,57 @@ html(lang="en")
           // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
           alert(res);
         }
-      });
+      }); */
+
+      // 页面验证成功的事件
+      wx.ready(function () {
+        // 自定义“分享给朋友”及“分享到QQ”按钮的分享内容
+        wx.updateAppMessageShareData({
+          title: '震惊damu竟然...', // 分享标题
+          desc: '不可描述', // 分享描述
+          link: '#{url}/share', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+          imgUrl: 'https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=4072495426,2253795891&fm=74&app=80&f=JPEG&size=f121,140?sec=1880279984&t=5b30d60b29540e2ce110f4dd761c8918', // 分享图标
+          success: function () {
+            // 设置成功
+            alert('分享成功');
+          }
+        })
+        // 自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容
+        wx.updateTimelineShareData({
+          title: '震惊damu竟然...', // 分享标题
+          link: '#{url}/share', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+          imgUrl: 'https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=4072495426,2253795891&fm=74&app=80&f=JPEG&size=f121,140?sec=1880279984&t=5b30d60b29540e2ce110f4dd761c8918', // 分享图标
+          success: function () {
+            // 设置成功
+            alert('分享成功');
+          }
+        })
+
+        document.getElementById('start').addEventListener('touchstart', function () {
+          // 开始录音
+          wx.startRecord();
+        })
+
+        document.getElementById('end').addEventListener('touchstart', function () {
+          // 结束录音
+          wx.stopRecord({
+            success: function (res) {
+              const localId = res.localId;
+              // 语音识别
+              wx.translateVoice({
+                localId: localId, // 需要识别的音频的本地Id，由录音相关接口获得
+                isShowProgressTips: 1, // 默认为1，显示进度提示
+                success: function (res) {
+                  alert(res.translateResult); // 语音识别的结果
+                }
+              });
+            }
+          });
+        })
+
+      })
+
+
 
 
 
