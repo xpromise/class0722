@@ -1,3 +1,4 @@
+//#region 
 /*
   1. 初始化package  npm init -y
   2. 下载包
@@ -12,6 +13,7 @@
     - 配置任务
     - 运行任务  gulp 任务名称
 */
+//#endregion
 
 // 引入插件
 const gulp = require('gulp');
@@ -22,6 +24,10 @@ const eslint = require('gulp-eslint');
 const less = require('gulp-less');
 const connect = require('gulp-connect');
 const open = require('open');
+const uglify = require('gulp-uglify');
+const concat = require('gulp-concat');
+const cssmin = require('gulp-cssmin');
+const htmlmin = require('gulp-htmlmin');
 
 // 注册任务
 gulp.task('babel', function () {
@@ -42,6 +48,7 @@ gulp.task('browserify', function () {
     .pipe(connect.reload());
 });
 
+//#region airbnb/eslint 
 /*
   airbnb/eslint  https://github.com/lin-123/javascript
 
@@ -59,10 +66,11 @@ gulp.task('browserify', function () {
         "browser": true  // 开启浏览器环境：支持浏览器全局变量
       },
       "globals": {
-        "Promise": true // 定义另外的全部变量
+        "Promise": true // 定义另外的全局变量
       }
     }
 */
+//#endregion
 gulp.task('eslint', () => {
   return gulp.src('src/js/*.js') // 检查源代码
     .pipe(eslint())
@@ -70,7 +78,6 @@ gulp.task('eslint', () => {
     .pipe(eslint.failAfterError())
     .pipe(connect.reload());
 });
-
 
 gulp.task('less', function () {
   return gulp.src('./src/less/*.less')
@@ -106,10 +113,34 @@ gulp.task('watch', function () {
 
 })
 
+gulp.task('uglify', function () {
+  return gulp.src('build/js/built.js')
+    .pipe(uglify())
+    .pipe(rename('dist.min.js'))
+    .pipe(gulp.dest('dist/js'))
+})
+
+gulp.task('cssmin', function () {
+  return gulp.src('./build/css/*.css')
+    .pipe(concat('dist.min.css')) // 合并文件
+    .pipe(cssmin()) // 压缩css
+    .pipe(gulp.dest('./dist/css'));
+});
+
+gulp.task('htmlmin', () => {
+  return gulp.src('src/index.html')
+    .pipe(htmlmin({
+      collapseWhitespace: true, // 去除空格/换行符
+      removeComments: true, // 移除注释
+    }))
+    .pipe(gulp.dest('dist'));
+});
 
 // 配置统一任务
 gulp.task('js', gulp.series(['eslint', 'babel', 'browserify'])); // 同步执行、顺序执行
+gulp.task('dev', gulp.parallel(['js', 'less', 'html'])); // 并行执行、同时执行（效率更高）
+gulp.task('default', gulp.series(['dev', 'watch']));
 
-gulp.task('js-dev', gulp.parallel(['js', 'less', 'html'])); // 并行执行、同时执行（效率更高）
-
-gulp.task('default', gulp.series(['js-dev', 'watch']));
+gulp.task('js-prod', gulp.series(['js', 'uglify'])); // 同步执行、顺序执行
+gulp.task('css-prod', gulp.series(['less', 'cssmin']));
+gulp.task('build', gulp.parallel(['js-prod', 'css-prod', 'htmlmin'])); // 同步执行、顺序执行
