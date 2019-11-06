@@ -6,3 +6,5 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var p = new _module["default"]('damu', 30);
 console.log(p);
+p.setName('zzd');
+console.log(p);
