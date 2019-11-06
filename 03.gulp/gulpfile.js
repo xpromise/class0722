@@ -19,6 +19,9 @@ const babel = require('gulp-babel');
 const browserify = require('gulp-browserify');
 const rename = require('gulp-rename');
 const eslint = require('gulp-eslint');
+const less = require('gulp-less');
+const connect = require('gulp-connect');
+const open = require('open');
 
 // 注册任务
 gulp.task('babel', function () {
@@ -27,6 +30,7 @@ gulp.task('babel', function () {
       presets: ['@babel/preset-env']
     }))
     .pipe(gulp.dest('./build/js')) // 将流中的文件输出出去
+    .pipe(connect.reload());
 });
 
 gulp.task('browserify', function () {
@@ -35,6 +39,7 @@ gulp.task('browserify', function () {
     .pipe(browserify()) // 将Commonjs模块化语法编译成浏览器能识别语法
     .pipe(rename('built.js')) // 重命名
     .pipe(gulp.dest('./build/js'))
+    .pipe(connect.reload());
 });
 
 /*
@@ -62,9 +67,49 @@ gulp.task('eslint', () => {
   return gulp.src('src/js/*.js') // 检查源代码
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+    .pipe(eslint.failAfterError())
+    .pipe(connect.reload());
 });
 
+
+gulp.task('less', function () {
+  return gulp.src('./src/less/*.less')
+    .pipe(less()) // 将less编译成css
+    .pipe(gulp.dest('./build/css'))
+    .pipe(connect.reload());
+});
+
+gulp.task('html', function () {
+  return gulp.src('./src/index.html')
+    .pipe(gulp.dest('./build'))
+    .pipe(connect.reload());
+});
+
+gulp.task('watch', function () {
+
+  // 自动刷新浏览器
+  // 开启服务器
+  connect.server({
+    root: 'build', // 将当前目录资源暴露出去
+    port: 3000,
+    livereload: true // 自动刷新浏览器
+  });
+
+  // 打开浏览器
+  open('http://localhost:3000');
+
+  // 自动编译
+  // 一旦js文件发生变化，就执行后面任务
+  gulp.watch('./src/js/*.js', gulp.series(['js']));
+  gulp.watch('./src/less/*.less', gulp.series(['less']));
+  gulp.watch('./src/index.html', gulp.series(['html']));
+
+})
+
+
 // 配置统一任务
-gulp.task('default', gulp.series(['eslint', 'babel', 'browserify'])); // 同步执行、顺序执行
-// gulp.task('default', gulp.parallel(['babel', 'browserify'])); // 并行执行、同时执行（效率更高）
+gulp.task('js', gulp.series(['eslint', 'babel', 'browserify'])); // 同步执行、顺序执行
+
+gulp.task('js-dev', gulp.parallel(['js', 'less', 'html'])); // 并行执行、同时执行（效率更高）
+
+gulp.task('default', gulp.series(['js-dev', 'watch']));
