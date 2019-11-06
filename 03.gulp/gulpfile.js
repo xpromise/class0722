@@ -11,7 +11,6 @@
     - 下载包/引入包
     - 配置任务
     - 运行任务  gulp 任务名称
-
 */
 
 // 引入插件
@@ -19,6 +18,7 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 const browserify = require('gulp-browserify');
 const rename = require('gulp-rename');
+const eslint = require('gulp-eslint');
 
 // 注册任务
 gulp.task('babel', function () {
@@ -31,12 +31,40 @@ gulp.task('babel', function () {
 
 gulp.task('browserify', function () {
   // 必须加return，否则会报错
-  return gulp.src('build/js/index.js')
+  return gulp.src('build/js/index.js') // 只需导入入口js文件, 会自动分析依赖
     .pipe(browserify()) // 将Commonjs模块化语法编译成浏览器能识别语法
     .pipe(rename('built.js')) // 重命名
     .pipe(gulp.dest('./build/js'))
 });
 
+/*
+  airbnb/eslint  https://github.com/lin-123/javascript
+
+  下载包
+    npx install-peerdeps --dev eslint-config-airbnb-base
+  在package.json中加上配置：
+    "eslintConfig": {
+      "extends": "airbnb-base", // 继承airbnb的规则
+      "rules": {
+        "linebreak-style": 0, // 关闭规则
+        "no-console": 0,
+        "eol-last": 0
+      },
+      "env": {
+        "browser": true  // 开启浏览器环境：支持浏览器全局变量
+      },
+      "globals": {
+        "Promise": true // 定义另外的全部变量
+      }
+    }
+*/
+gulp.task('eslint', () => {
+  return gulp.src('src/js/*.js') // 检查源代码
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
+
 // 配置统一任务
-gulp.task('default', gulp.series(['babel', 'browserify'])); // 同步执行、顺序执行
+gulp.task('default', gulp.series(['eslint', 'babel', 'browserify'])); // 同步执行、顺序执行
 // gulp.task('default', gulp.parallel(['babel', 'browserify'])); // 并行执行、同时执行（效率更高）

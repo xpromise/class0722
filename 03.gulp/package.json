@@ -12,9 +12,27 @@
   "devDependencies": {
     "@babel/core": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-browserify": "^0.5.1",
+    "gulp-eslint": "^6.0.0",
     "gulp-rename": "^1.4.0"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "rules": {
+      "linebreak-style": 0,
+      "no-console": 0,
+      "eol-last": 0
+    },
+    "env": {
+      "browser": true
+    },
+    "globals": {
+      "Promise": true
+    }
   }
 }
