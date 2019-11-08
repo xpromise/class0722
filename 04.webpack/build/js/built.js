@@ -97,6 +97,17 @@ eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/css/iconfont.css":
+/*!********************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/css/iconfont.css ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Imports\nvar getUrl = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/getUrl.js */ \"./node_modules/css-loader/dist/runtime/getUrl.js\");\nvar ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../media/iconfont.eot?t=1573183519943 */ \"./src/media/iconfont.eot?t=1573183519943\"));\nvar ___CSS_LOADER_URL___1___ = getUrl(__webpack_require__(/*! ../media/iconfont.eot?t=1573183519943 */ \"./src/media/iconfont.eot?t=1573183519943\") + \"#iefix\");\nvar ___CSS_LOADER_URL___2___ = getUrl(__webpack_require__(/*! ../media/iconfont.woff?t=1573183519943 */ \"./src/media/iconfont.woff?t=1573183519943\"));\nvar ___CSS_LOADER_URL___3___ = getUrl(__webpack_require__(/*! ../media/iconfont.ttf?t=1573183519943 */ \"./src/media/iconfont.ttf?t=1573183519943\"));\nvar ___CSS_LOADER_URL___4___ = getUrl(__webpack_require__(/*! ../media/iconfont.svg?t=1573183519943 */ \"./src/media/iconfont.svg?t=1573183519943\") + \"#iconfont\");\n// Module\nexports.push([module.i, \"@font-face {font-family: \\\"iconfont\\\";\\n  src: url(\" + ___CSS_LOADER_URL___0___ + \"); /* IE9 */\\n  src: url(\" + ___CSS_LOADER_URL___1___ + \") format('embedded-opentype'), \\n  url('data:application/x-font-woff2;charset=utf-8;base64,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') format('woff2'),\\n  url(\" + ___CSS_LOADER_URL___2___ + \") format('woff'),\\n  url(\" + ___CSS_LOADER_URL___3___ + \") format('truetype'), \\n  url(\" + ___CSS_LOADER_URL___4___ + \") format('svg'); /* iOS 4.1- */\\n}\\n\\n.iconfont {\\n  font-family: \\\"iconfont\\\" !important;\\n  font-size: 16px;\\n  font-style: normal;\\n  -webkit-font-smoothing: antialiased;\\n  -moz-osx-font-smoothing: grayscale;\\n}\\n\\n.icon-icon-test:before {\\n  content: \\\"\\\\e65e\\\";\\n}\\n\\n.icon-icon-test1:before {\\n  content: \\\"\\\\e65f\\\";\\n}\\n\\n.icon-dingtalk:before {\\n  content: \\\"\\\\e666\\\";\\n}\\n\\n.icon-alipay:before {\\n  content: \\\"\\\\e667\\\";\\n}\\n\\n.icon-taobao:before {\\n  content: \\\"\\\\e668\\\";\\n}\\n\\n\", \"\"]);\n\n\n//# sourceURL=webpack:///./src/css/iconfont.css?./node_modules/css-loader/dist/cjs.js");
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/css/test1.css":
 /*!*****************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/css/test1.css ***!
@@ -144,6 +155,17 @@ eval("\n\nvar stylesInDom = {};\n\nvar isOldIE = function isOldIE() {\n  var mem
 
 /***/ }),
 
+/***/ "./src/css/iconfont.css":
+/*!******************************!*\
+  !*** ./src/css/iconfont.css ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!./iconfont.css */ \"./node_modules/css-loader/dist/cjs.js!./src/css/iconfont.css\");\n\nif (typeof content === 'string') {\n  content = [[module.i, content, '']];\n}\n\nvar options = {}\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\")(content, options);\n\nif (content.locals) {\n  module.exports = content.locals;\n}\n\n\n//# sourceURL=webpack:///./src/css/iconfont.css?");
+
+/***/ }),
+
 /***/ "./src/css/test1.css":
 /*!***************************!*\
   !*** ./src/css/test1.css ***!
@@ -185,7 +207,7 @@ eval("module.exports = __webpack_require__.p + \"images/e9b116eef4.png\";\n\n//#
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _module1__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./module1 */ \"./src/js/module1.js\");\n/* harmony import */ var _json_data_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../json/data.json */ \"./src/json/data.json\");\nvar _json_data_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../json/data.json */ \"./src/json/data.json\", 1);\n/* harmony import */ var _css_test1_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/test1.css */ \"./src/css/test1.css\");\n/* harmony import */ var _css_test1_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_css_test1_css__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _less_test1_less__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../less/test1.less */ \"./src/less/test1.less\");\n/* harmony import */ var _less_test1_less__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_less_test1_less__WEBPACK_IMPORTED_MODULE_3__);\n\r\n\r\n// 引入目的：让webpack打包css资源\r\n\r\n\r\n\r\n//#region \r\n/*\r\n  1. 下载包\r\n    npm i webpack webpack-cli -g\r\n    npm i webpack webpack-cli -D\r\n  2. 编写代码\r\n  3. 使用webpack编译代码\r\n    webpack ./src/js/app.js -o ./build/js/built.js --mode=development  \r\n      功能：\r\n        1. 能将ES6模块化语法编译成浏览器能识别的模块化语法\r\n        2. 不能将ES6其他语法编译成ES5以下的低级语法\r\n    webpack ./src/js/app.js -o ./build/js/built.js --mode=production  \r\n      功能：\r\n        1. 能将ES6模块化语法编译成浏览器能识别的模块化语法\r\n        2. 不能将ES6其他语法编译成ES5以下的低级语法\r\n        3. 压缩js代码\r\n  4. webpack核心概念\r\n    1. entry 入口文件：指示webpack从哪个文件开始打包\r\n    2. output 输出：指示webpack打包后资源输出到哪里去\r\n    3. loader 加载器：帮助webpack解析非js/json的文件\r\n    4. plugin 插件：执行功能更加强大的任务（执行loader干不了的事）\r\n    5. mode 模式： \r\n      development\r\n      production\r\n*/\r\n//#endregion\r\n\r\n_module1__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\r\n  .then((value) => {\r\n    console.log(value);\r\n  })\r\n\r\nconsole.log(_json_data_json__WEBPACK_IMPORTED_MODULE_1__);\n\n//# sourceURL=webpack:///./src/js/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _module1__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./module1 */ \"./src/js/module1.js\");\n/* harmony import */ var _json_data_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../json/data.json */ \"./src/json/data.json\");\nvar _json_data_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../json/data.json */ \"./src/json/data.json\", 1);\n/* harmony import */ var _css_test1_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/test1.css */ \"./src/css/test1.css\");\n/* harmony import */ var _css_test1_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_css_test1_css__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _css_iconfont_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css/iconfont.css */ \"./src/css/iconfont.css\");\n/* harmony import */ var _css_iconfont_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_css_iconfont_css__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _less_test1_less__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../less/test1.less */ \"./src/less/test1.less\");\n/* harmony import */ var _less_test1_less__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_less_test1_less__WEBPACK_IMPORTED_MODULE_4__);\n\r\n\r\n// 引入目的：让webpack打包css资源\r\n\r\n\r\n\r\n\r\n// #region\r\n/*\r\n  1. 下载包\r\n    npm i webpack webpack-cli -g\r\n    npm i webpack webpack-cli -D\r\n  2. 编写代码\r\n  3. 使用webpack编译代码\r\n    webpack ./src/js/app.js -o ./build/js/built.js --mode=development\r\n      功能：\r\n        1. 能将ES6模块化语法编译成浏览器能识别的模块化语法\r\n        2. 不能将ES6其他语法编译成ES5以下的低级语法\r\n    webpack ./src/js/app.js -o ./build/js/built.js --mode=production\r\n      功能：\r\n        1. 能将ES6模块化语法编译成浏览器能识别的模块化语法\r\n        2. 不能将ES6其他语法编译成ES5以下的低级语法\r\n        3. 压缩js代码\r\n  4. webpack核心概念\r\n    1. entry 入口文件：指示webpack从哪个文件开始打包\r\n    2. output 输出：指示webpack打包后资源输出到哪里去\r\n    3. loader 加载器：帮助webpack解析非js/json的文件\r\n    4. plugin 插件：执行功能更加强大的任务（执行loader干不了的事）\r\n    5. mode 模式：\r\n      development\r\n      production\r\n*/\r\n// #endregion\r\n\r\n_module1__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\r\n  .then((value) => {\r\n    console.log(value);\r\n  });\r\n\r\nconsole.log(_json_data_json__WEBPACK_IMPORTED_MODULE_1__);\n\n//# sourceURL=webpack:///./src/js/app.js?");
 
 /***/ }),
 
@@ -197,7 +219,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nconst promise = new Promise((resolve, reject) => {\r\n  setTimeout(() => {\r\n    console.log('延时1秒执行了~');\r\n    resolve('aaa');\r\n  }, 1000)\r\n})\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (promise);\n\n//# sourceURL=webpack:///./src/js/module1.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nconst promise = new Promise((resolve) => {\r\n  setTimeout(() => {\r\n    console.log('延时1秒执行了~');\r\n    resolve('aaa');\r\n  }, 1000);\r\n});\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (promise);\n\n//# sourceURL=webpack:///./src/js/module1.js?");
 
 /***/ }),
 
@@ -220,6 +242,50 @@ eval("module.exports = JSON.parse(\"{\\\"name\\\":\\\"damu\\\",\\\"wife\\\":\\\"
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/less-loader/dist/cjs.js!./test1.less */ \"./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/less/test1.less\");\n\nif (typeof content === 'string') {\n  content = [[module.i, content, '']];\n}\n\nvar options = {}\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\")(content, options);\n\nif (content.locals) {\n  module.exports = content.locals;\n}\n\n\n//# sourceURL=webpack:///./src/less/test1.less?");
+
+/***/ }),
+
+/***/ "./src/media/iconfont.eot?t=1573183519943":
+/*!************************************************!*\
+  !*** ./src/media/iconfont.eot?t=1573183519943 ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"media/b831338e4f.eot\";\n\n//# sourceURL=webpack:///./src/media/iconfont.eot?");
+
+/***/ }),
+
+/***/ "./src/media/iconfont.svg?t=1573183519943":
+/*!************************************************!*\
+  !*** ./src/media/iconfont.svg?t=1573183519943 ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"media/3bbc9e6ac1.svg\";\n\n//# sourceURL=webpack:///./src/media/iconfont.svg?");
+
+/***/ }),
+
+/***/ "./src/media/iconfont.ttf?t=1573183519943":
+/*!************************************************!*\
+  !*** ./src/media/iconfont.ttf?t=1573183519943 ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"media/7f3cd220ee.ttf\";\n\n//# sourceURL=webpack:///./src/media/iconfont.ttf?");
+
+/***/ }),
+
+/***/ "./src/media/iconfont.woff?t=1573183519943":
+/*!*************************************************!*\
+  !*** ./src/media/iconfont.woff?t=1573183519943 ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"media/a246193513.woff\";\n\n//# sourceURL=webpack:///./src/media/iconfont.woff?");
 
 /***/ })
 

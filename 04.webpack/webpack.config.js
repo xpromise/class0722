@@ -46,6 +46,26 @@ module.exports = {
             name: '[hash:10].[ext]' // [hash:10] -> hash值取前10位  [ext] -> 补全之前的文件扩展名
           }
         }
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader' // 处理html的img
+      },
+      {
+        test: /\.(eot|ttf|woff|svg|mp3|mp4)$/,
+        loader: 'file-loader', // 将文件原封不动输出出去
+        options: {
+          outputPath: 'media',
+          name: '[hash:10].[ext]'
+        }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/, // 排除node_modules不检查
+        loader: "eslint-loader",
+        options: {
+          fix: true // 自动修复
+        }
       }
     ]
   },
