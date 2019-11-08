@@ -38,3 +38,4 @@ promise
   });
 
 console.log(data);
+console.log(222);

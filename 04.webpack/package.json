@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server"
   },
   "keywords": [],
   "author": "",
@@ -23,14 +23,13 @@
     "style-loader": "^1.0.0",
     "url-loader": "^2.2.0",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
   },
   "eslintConfig": {
     "extends": "airbnb-base",
     "rules": {
-      "linebreak-style": 0,
-      "no-console": 0,
-      "eol-last": 0
+      "no-console": 0
     },
     "env": {
       "browser": true

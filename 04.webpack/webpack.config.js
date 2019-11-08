@@ -13,7 +13,7 @@ const {
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/js/app.js',
+  entry: ['./src/js/app.js', './src/index.html'],
   output: {
     path: resolve(__dirname, 'build'), // 文件输出目录(只要经过webpack打包的文件，都会输出到这个目录)
     filename: './js/built.js' // 输出文件名(只会将入口文件打包后输出的名称修改)
@@ -76,4 +76,13 @@ module.exports = {
     })
   ],
   mode: 'development', // 开发模式
+  // 开发服务器  npm i webpack-dev-server -D
+  // 运行指令： npx webpack-dev-server ，这个运行指令才能启动devServer的配置
+  devServer: {
+    contentBase: resolve(__dirname, 'build'), // 将指定目录资源暴露出去
+    compress: true, // 开启gzip压缩
+    port: 3000, // 端口号
+    open: true, // 自动打开浏览器
+    hot: true, // 开启HMR 模块热替换 功能
+  }
 }
