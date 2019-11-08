@@ -1,9 +1,10 @@
+import $ from 'jquery';
 import promise from './module1';
-import data from '../json/data.json';
+import data from '../json/data';
 // 引入目的：让webpack打包css资源
-import '../css/test1.css';
-import '../css/iconfont.css';
-import '../less/test1.less';
+import '$css/test1';
+import '$css/iconfont';
+import '../less/test1';
 
 // #region
 /*
@@ -39,3 +40,5 @@ promise
 
 console.log(data);
 console.log(222);
+
+$('body').css('background', 'pink');

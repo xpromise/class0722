@@ -11,7 +11,9 @@ module.exports = {
     filename: './js/built.js'
   },
   module: {
-    rules: [{
+    rules: [
+      // loader
+      {
         test: /\.css$/,
         use: [
           'style-loader',

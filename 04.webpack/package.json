@@ -29,7 +29,8 @@
   "eslintConfig": {
     "extends": "airbnb-base",
     "rules": {
-      "no-console": 0
+      "no-console": 0,
+      "import/no-unresolved": 0
     },
     "env": {
       "browser": true
@@ -37,5 +38,8 @@
     "globals": {
       "Promise": true
     }
+  },
+  "dependencies": {
+    "jquery": "^3.4.1"
   }
 }

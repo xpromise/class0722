@@ -84,5 +84,17 @@ module.exports = {
     port: 3000, // 端口号
     open: true, // 自动打开浏览器
     hot: true, // 开启HMR 模块热替换 功能
+  },
+  devtool: 'cheap-module-eval-source-map', // 生成source-map（提供与源代码的映射）
+  resolve: {
+    alias: { // 配置路径别名: 简化路径的写法（缺点：没有路径提示）
+      '$css': resolve(__dirname, 'src/css'),
+      '$less': resolve(__dirname, 'src/less')
+    },
+    extensions: ['.js', '.json', '.less', '.css'] // 可以省略文件后缀名
+  },
+  // target: 'web',
+  externals: {
+    jquery: '$', // 让jquery不会webpack构建，需要手动使用外链script引入
   }
 }
