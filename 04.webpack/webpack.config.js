@@ -14,8 +14,8 @@ const {
 module.exports = {
   entry: './src/js/app.js',
   output: {
-    path: resolve(__dirname, 'build/js'), // 文件输出目录(只要经过webpack打包的文件，都会输出到这个目录)
-    filename: 'built.js' // 输出文件名(只会将入口文件打包后输出的名称修改)
+    path: resolve(__dirname, 'build'), // 文件输出目录(只要经过webpack打包的文件，都会输出到这个目录)
+    filename: './js/built.js' // 输出文件名(只会将入口文件打包后输出的名称修改)
   },
   module: {
     rules: [
@@ -34,6 +34,17 @@ module.exports = {
           'css-loader',
           'less-loader' // 将less编译成css
         ]
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 10240, // 小于10kb大小的图片会被base64处理
+            outputPath: 'images', // 在原来path路径的基础上进行修改
+            name: '[hash:10].[ext]' // [hash:10] -> hash值取前10位  [ext] -> 补全之前的文件扩展名
+          }
+        }
       }
     ]
   },
