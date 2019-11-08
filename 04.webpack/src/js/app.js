@@ -1,7 +1,8 @@
 import promise from './module1';
 import data from '../json/data.json';
 // 引入目的：让webpack打包css资源
-// import '../css/test1.css';
+import '../css/test1.css';
+import '../less/test1.less';
 
 //#region 
 /*

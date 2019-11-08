@@ -1,5 +1,7 @@
 const express = require('express');
-const { port } = require('./config');
+const {
+  port
+} = require('./config');
 const verify = require('./middlewares/verify');
 require('./db');
 
