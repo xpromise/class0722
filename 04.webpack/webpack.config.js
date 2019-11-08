@@ -10,6 +10,7 @@
 const {
   resolve
 } = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/js/app.js',
@@ -50,7 +51,9 @@ module.exports = {
   },
   plugins: [
     // 写plugin的配置
-
+    new HtmlWebpackPlugin({ // 生成一个html文件，并自动引入打包后输出js/css资源
+      template: './src/index.html' // 以某个html文件为模板，创建新的html文件（新文件和源文件结构一样）
+    })
   ],
   mode: 'development', // 开发模式
 }
