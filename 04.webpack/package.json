@@ -59,5 +59,9 @@
     "cover 95%",
     "not ie <= 8",
     "not dead"
+  ],
+  "sideEffects": [
+    "*.css", 
+    "*.less"
   ]
 }
