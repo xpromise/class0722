@@ -15,7 +15,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: ['./src/js/app.js', './src/index.html'],
   output: {
-    path: resolve(__dirname, 'build'), // 文件输出目录(只要经过webpack打包的文件，都会输出到这个目录)
+    path: resolve(__dirname, '../build'), // 文件输出目录(只要经过webpack打包的文件，都会输出到这个目录)
     filename: './js/built.js' // 输出文件名(只会将入口文件打包后输出的名称修改)
   },
   module: {
@@ -79,7 +79,7 @@ module.exports = {
   // 开发服务器  npm i webpack-dev-server -D
   // 运行指令： npx webpack-dev-server ，这个运行指令才能启动devServer的配置
   devServer: {
-    contentBase: resolve(__dirname, 'build'), // 将指定目录资源暴露出去
+    contentBase: resolve(__dirname, '../build'), // 将指定目录资源暴露出去
     compress: true, // 开启gzip压缩
     port: 3000, // 端口号
     open: true, // 自动打开浏览器
@@ -88,8 +88,8 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map', // 生成source-map（提供与源代码的映射）
   resolve: {
     alias: { // 配置路径别名: 简化路径的写法（缺点：没有路径提示）
-      '$css': resolve(__dirname, 'src/css'),
-      '$less': resolve(__dirname, 'src/less')
+      '$css': resolve(__dirname, '../src/css'),
+      '$less': resolve(__dirname, '../src/less')
     },
     extensions: ['.js', '.json', '.less', '.css'] // 可以省略文件后缀名
   },
