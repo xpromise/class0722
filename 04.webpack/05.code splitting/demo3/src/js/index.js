@@ -3,7 +3,7 @@ import('./module1')
   .then(({
     default: module1
   }) => {
-    module1.showMsg();
+    module1();
   })
   .catch((err) => {
     console.log(err);

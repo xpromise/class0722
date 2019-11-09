@@ -4,8 +4,8 @@ import data from '../json/data'; // 引入目的：让webpack打包css资源
 
 import '$css/test1';
 import '$css/iconfont';
-import '../less/test1'; // #region
-
+import '../less/test1';
+// #region
 /*
   1. 下载包
     npm i webpack webpack-cli -g
@@ -38,3 +38,21 @@ promise.then((value) => {
 console.log(data);
 console.log(222);
 $('body').css('background', 'pink');
+
+// eslint默认是不解析的，会报错。要使用babel-eslint解析
+// npm i babel-eslint -D  "parser": "babel-eslint"
+import('./module2.js')
+  .then(({
+    default: module2,
+  }) => console.log(module2(2, 3)));
+
+// 注册PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+      console.log('SW registered: ', registration);
+    }).catch((registrationError) => {
+      console.log('SW registration failed: ', registrationError);
+    });
+  });
+}

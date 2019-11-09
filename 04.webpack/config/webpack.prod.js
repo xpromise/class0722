@@ -15,12 +15,13 @@ const {
 } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: './src/js/app.js',
   output: {
     path: resolve(__dirname, '../build'), // 文件输出目录(只要经过webpack打包的文件，都会输出到这个目录)
-    filename: 'js/built.js', // 输出文件名(只会将入口文件打包后输出的名称修改)
+    filename: 'js/[name].[contenthash:10].js', // 输出文件名(只会将入口文件打包后输出的名称修改)
     publicPath: '/', // 所有输出资源的公共路径
   },
   module: {
@@ -147,8 +148,8 @@ module.exports = {
     }),
     new CleanWebpackPlugin(), // 在生成新资源之前，自动清除output.path的目录下面的内容
     new MiniCssExtractPlugin({ // 提取css成单独文件
-      filename: "css/[name].css",
-      chunkFilename: "css/[id].css"
+      filename: "css/[contenthash:10].css",
+      chunkFilename: "css/[id].[contenthash:10].css"
     }),
     new OptimizeCssAssetsPlugin({ // 压缩css
       // assetNameRegExp: /\.css$/g,
@@ -167,6 +168,12 @@ module.exports = {
         }],
       },
       // canPrint: true
+    }),
+    new WorkboxPlugin.GenerateSW({
+      // 这些选项帮助快速启用 ServiceWorkers
+      // 不允许遗留任何“旧的” ServiceWorkers
+      clientsClaim: true,
+      skipWaiting: true
     })
   ],
   mode: 'production', // 开发模式
