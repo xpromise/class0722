@@ -3,4 +3,11 @@
   height: 100px;
   background-image: url('../images/1.jpg');
   background-size: cover;
+  display: flex;
+  animation: move 2s infinite linear;
+}
+
+@keyframes move {
+  0%{}
+  100%{transform: translateX(200px);}
 }

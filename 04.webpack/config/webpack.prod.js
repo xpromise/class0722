@@ -14,6 +14,7 @@ const {
   CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   entry: './src/js/app.js',
@@ -30,6 +31,17 @@ module.exports = {
         use: [ // 从下到上，从右到左依次执行
           MiniCssExtractPlugin.loader, // 提取css成单独文件
           'css-loader', // 将css文件解析成字符串，以commonjs模块化方式引入到js中
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: (loader) => [
+                require('postcss-import')({ root: loader.resourcePath }),
+                require('postcss-preset-env')(),
+                require('cssnano')()
+              ]
+            }
+          }
         ]
       },
       {
@@ -37,6 +49,17 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader, // 提取css成单独文件
           'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: (loader) => [
+                require('postcss-import')({ root: loader.resourcePath }),
+                require('postcss-preset-env')(),
+                require('cssnano')()
+              ]
+            }
+          },
           'less-loader' // 将less编译成css
         ]
       },
@@ -108,6 +131,24 @@ module.exports = {
     new MiniCssExtractPlugin({ // 提取css成单独文件
       filename: "css/[name].css",
       chunkFilename: "css/[id].css"
+    }),
+    new OptimizeCssAssetsPlugin({ // 压缩css
+      // assetNameRegExp: /\.css$/g,
+      // cssProcessor: require('cssnano'),
+      cssProcessorOptions: { // 开启source map
+        map: {
+          inline: false,
+          annotation: true,
+        }
+      },
+      cssProcessorPluginOptions: {
+        preset: ['default', {
+          discardComments: {
+            removeAll: true
+          }
+        }],
+      },
+      // canPrint: true
     })
   ],
   mode: 'production', // 开发模式
