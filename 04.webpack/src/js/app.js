@@ -1,12 +1,11 @@
 import $ from 'jquery';
 import promise from './module1';
-import data from '../json/data';
-// 引入目的：让webpack打包css资源
+import data from '../json/data'; // 引入目的：让webpack打包css资源
+
 import '$css/test1';
 import '$css/iconfont';
-import '../less/test1';
+import '../less/test1'; // #region
 
-// #region
 /*
   1. 下载包
     npm i webpack webpack-cli -g
@@ -33,12 +32,9 @@ import '../less/test1';
 */
 // #endregion
 
-promise
-  .then((value) => {
-    console.log(value);
-  });
-
+promise.then((value) => {
+  console.log(value);
+});
 console.log(data);
 console.log(222);
-
 $('body').css('background', 'pink');

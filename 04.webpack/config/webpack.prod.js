@@ -13,12 +13,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {
   CleanWebpackPlugin
 } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: './src/js/app.js',
   output: {
     path: resolve(__dirname, '../build'), // 文件输出目录(只要经过webpack打包的文件，都会输出到这个目录)
-    filename: 'js/aaa.js', // 输出文件名(只会将入口文件打包后输出的名称修改)
+    filename: 'js/built.js', // 输出文件名(只会将入口文件打包后输出的名称修改)
     publicPath: '/', // 所有输出资源的公共路径
   },
   module: {
@@ -27,14 +28,14 @@ module.exports = {
       {
         test: /\.css$/, // 检测css文件
         use: [ // 从下到上，从右到左依次执行
-          'style-loader', // 创建一个style标签，将js中的css代码放入style标签中生效
+          MiniCssExtractPlugin.loader, // 提取css成单独文件
           'css-loader', // 将css文件解析成字符串，以commonjs模块化方式引入到js中
         ]
       },
       {
         test: /\.less$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader, // 提取css成单独文件
           'css-loader',
           'less-loader' // 将less编译成css
         ]
@@ -69,6 +70,32 @@ module.exports = {
         options: {
           fix: true // 自动修复
         }
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  useBuiltIns: 'usage', // 实现按需加载
+                  corejs: {
+                    version: 3,
+                    proposals: true
+                  },
+                  targets: { // 兼容到哪些版本的浏览器
+                    chrome: "58",
+                    ie: "9",
+                    firefox: "58"
+                  }
+                }
+              ]
+            ]
+          }
+        }
       }
     ]
   },
@@ -77,10 +104,14 @@ module.exports = {
     new HtmlWebpackPlugin({ // 生成一个html文件，并自动引入打包后输出js/css资源
       template: './src/index.html' // 以某个html文件为模板，创建新的html文件（新文件和源文件结构一样）
     }),
-    new CleanWebpackPlugin() // 在生成新资源之前，自动清除output.path的目录下面的内容
+    new CleanWebpackPlugin(), // 在生成新资源之前，自动清除output.path的目录下面的内容
+    new MiniCssExtractPlugin({ // 提取css成单独文件
+      filename: "css/[name].css",
+      chunkFilename: "css/[id].css"
+    })
   ],
   mode: 'production', // 开发模式
-  devtool: 'cheap-module-source-map', // 生成source-map（提供与源代码的映射）
+  devtool: 'source-map', // 生成source-map（提供与源代码的映射）
   resolve: {
     alias: { // 配置路径别名: 简化路径的写法（缺点：没有路径提示）
       '$css': resolve(__dirname, '../src/css'),
