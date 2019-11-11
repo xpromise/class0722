@@ -18,7 +18,61 @@
       1. 界面如果页面所示
       2. 点击按钮, 提示第一个输入框中的值
       3. 当第2个输入框失去焦点时, 提示这个输入框中的值
-   */
+    */
+
+    class Test extends React.Component {
+      constructor() {
+        super();
+        // 初始化ref
+        this.createRef = React.createRef();
+        // console.log(this.createRef);
+      }
+
+      handleClick = () => {
+        // 获取DOM元素
+        const input = this.createRef.current;
+        // 获取值
+        const value = input.value.trim();
+        
+        if (value) {
+          alert(value);
+          // 清空输入框数据
+          input.value = '';
+        }
+      }
+      /*
+        ref作用: 用来获取DOM元素的
+        结论：能不用就不用（因为在react中，不推荐直接操作DOM，如果没得选，那就用）
+        
+        如果触发事件的目标元素是你需要的元素，就通过event.target获取
+        如果不是，就需要ref方式获取
+      */
+      handleBlur = (event) => {
+        const value = event.target.value.trim(); // 触发事件的目标DOM元素
+        if (value) {
+          alert(value);
+          // 清空输入框数据
+          event.target.value = '';
+        }
+      }
+
+      funcRef = (input) => {
+        this.funcRef = input;
+      }
+
+      render() {
+        return <div>
+          {/* <input type="text" ref="stringRef"/> */}
+          {/* <input type="text" ref={this.funcRef}/> */}
+          <input type="text" ref={this.createRef}/>
+          <button onClick={this.handleClick}>点击提示数据</button>
+          <input type="text" placeholder="失去焦点提示数据" onBlur={this.handleBlur}/>
+        </div>
+      }
+    }
+
+    ReactDOM.render(<Test />, document.getElementById('example'))
+
   </script>
 </body>
 </html>
