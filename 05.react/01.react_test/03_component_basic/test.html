@@ -15,6 +15,7 @@
   <script type="text/babel">
     // 工厂函数组件 --> 用来定义简单组件（无状态和无生命周期函数）
     function Button() {
+      console.log(this); // undefined
       // 返回一个虚拟DOM对象
       return (
         <div>
@@ -30,6 +31,8 @@
     // ES6类组件 --> 用来定义复杂组件(有状态或有生命周期函数)
     class MyComponent extends React.Component {
       render() {
+        console.log(this);
+        
         return <div>
           <h1>hello react</h1>
           <input type="text" />
