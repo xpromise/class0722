@@ -10,6 +10,7 @@
 
 <script type="text/javascript" src="../js/react.development.js"></script>
 <script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script src="../js/prop-types.js"></script>
 <script type="text/javascript" src="../js/babel.min.js"></script>
 
 <script type="text/babel">
@@ -19,6 +20,56 @@
   1). 如果性别没有指定, 默认为男
   2). 如果年龄没有指定, 默认为18
   */
+
+  // 定义组件
+  class Person extends React.Component {
+    // static关键字 给类添加属性/方法，实例对象不能使用
+    static propTypes = {
+      name: PropTypes.string.isRequired, // 类型是字符串，必须传
+      age: PropTypes.number,
+      sex: PropTypes.string
+    }
+    static defaultProps = {
+      age: 18,
+      sex: '男'
+    }
+
+    render() {
+      // console.log(this);
+      // props用来接受组件标签属性
+      const { name, age, sex } = this.props;
+      
+      return <ul>
+        <li>姓名：{name}</li>
+        <li>年龄：{age}</li>
+        <li>性别：{sex}</li>
+      </ul>
+    }
+  }
+
+  // 数据
+  const person = {
+    name: 'damu',
+    // age: 38,
+    // sex: 'undefined'
+  }
+
+  // 对props类型约束和必要性约束
+  // Person.propTypes = {
+  //   name: PropTypes.string.isRequired, // 类型是字符串，必须传
+  //   age: PropTypes.number,
+  //   sex: PropTypes.string
+  // }
+  // 默认值
+  // Person.defaultProps = {
+  //   age: 18,
+  //   sex: '男'
+  // }
+
+  // 渲染
+  // 通过标签属性方式，向组件内传递数据
+  // ReactDOM.render(<Person name={person.name} age={person.age} sex={person.sex}/>, document.getElementById('example1'));
+  ReactDOM.render(<Person {...person}/>, document.getElementById('example1'));
 
 </script>
 </body>
