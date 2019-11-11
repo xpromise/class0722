@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>02_JSX</title>
+</head>
+<body>
+  <div id="test1"></div>
+  <div id="test2"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script>
+    // 1. 创建虚拟DOM对象
+    const vDom2 = React.createElement('span', null, 'hello span');
+    const vDom1 = React.createElement('h1', { className: 'title', id: 'title1' }, vDom2, vDom2);
+    // 2. 将虚拟DOM对象渲染到页面指定容器内
+    ReactDOM.render(vDom1, document.getElementById('test1'));
+  </script>
+
+  <script src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    /*
+      jsx语法:
+        1. 作用：用来简化创建虚拟DOM对象
+        2. 语法规则：
+          - 以<开头，会当做html标签解析，如果是同名标签就被解析同名元素, 如果不是，就会当做组件解析
+          - 以{开头，里面代码会当做js代码解析
+    */
+
+    const content = 'hello span~~';
+    const title = 'title2';
+
+    const vDom3 = <h1 className="title" id={title}>
+      <span>{content}</span>
+      <span>{content}</span>
+    </h1>;
+
+    ReactDOM.render(vDom3, document.getElementById('test2'));
+  </script>
+</body>
+</html>

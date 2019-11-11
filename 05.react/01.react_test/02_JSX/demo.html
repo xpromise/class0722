@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>02_JSX_DEMO</title>
+</head>
+<body>
+  <h2>前端JS框架列表</h2>
+  <div id="example1"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    // 请求回来的数据
+    const data = ['jquery', 'bootstrap', 'nodejs', 'express', 'react', 'webpack'];
+    // const data = [<li>jquery</li>, <li>bootstrap</li>, <li>nodejs</li>, 'express', 'react', 'webpack'];
+    
+    /* const result = data.map((item, index) => {
+      return <li>{item}</li>;
+    }) */
+    
+    // 内部会自动遍历显示数组的值
+    ReactDOM.render(<ul>
+      {
+        data.map((item, index) => <li key={index}>{item}</li>)
+      }
+    </ul>, document.getElementById('example1'));
+
+  </script>
+</body>
+</html>
