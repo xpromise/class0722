@@ -105,29 +105,32 @@ module.exports = {
           {
             test: /\.js$/,
             exclude: /(node_modules)/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                presets: [
-                  [
-                    '@babel/preset-env',
-                    {
-                      useBuiltIns: 'usage', // 实现按需加载
-                      corejs: {
-                        version: 3,
-                        proposals: true
-                      },
-                      targets: { // 兼容到哪些版本的浏览器
-                        chrome: "58",
-                        ie: "9",
-                        firefox: "58"
+            use: [
+              'thread-loader', // 开启多进程打包
+              {
+                loader: 'babel-loader',
+                options: {
+                  presets: [
+                    [
+                      '@babel/preset-env',
+                      {
+                        useBuiltIns: 'usage', // 实现按需加载
+                        corejs: {
+                          version: 3,
+                          proposals: true
+                        },
+                        targets: { // 兼容到哪些版本的浏览器
+                          chrome: "58",
+                          ie: "9",
+                          firefox: "58"
+                        }
                       }
-                    }
-                  ]
-                ],
-                cacheDirectory: true, // 开启缓存文件夹
+                    ]
+                  ],
+                  cacheDirectory: true, // 开启缓存文件夹
+                }
               }
-            }
+            ]
           }
         ]
       }
