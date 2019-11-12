@@ -28,6 +28,8 @@
             如果只有一个组件使用，就定义在单个组件内部
             如果有多个组件使用，就定义在多个组件的公共父组件中
           4. 先实现数据的动态展示。在实现其他功能
+          5. 操作state数据方法定义在哪？
+            state在哪里，操作数据的方法就定义在哪里
 
     */
 
@@ -42,13 +44,22 @@
         }
       }
 
+      // 添加todo方法
+      add = (todo) => {
+        // 更新state
+        // 不能修改原数据，只能产生一份新数据
+        this.setState({
+          todos: [todo, ...this.state.todos]
+        })
+      }
+
       render() {
         // 读取状态数据
         const { todos } = this.state;
 
         return <div>
           <h1>Simple Todo List</h1>
-          <AddTodo />
+          <AddTodo add={this.add} length={todos.length}/>
           {/* 组件外向组件内以标签属性（props）方式传递变化数据 */}
           <TodoList todos={todos}/>
         </div>
@@ -56,10 +67,37 @@
     }
 
     class AddTodo extends React.Component {
+      static propTypes = {
+        add: PropTypes.func.isRequired,
+        length: PropTypes.number.isRequired
+      }
+
+      constructor() {
+        super();
+        // 初始化ref
+        this.inputRef = React.createRef();
+      }
+
+      // 点击事件的回调函数 
+      addTodo = () => {
+        // 获取DOM元素
+        const input = this.inputRef.current;
+        // 获取值
+        const todo = input.value.trim();
+
+        if (todo) {
+          // 添加数据
+          this.props.add(todo);
+          // 清空数据
+          input.value = '';
+        }
+
+      }
+
       render() {
         return <div>
-          <input type="text" />
-          <button>Add #3</button>
+          <input type="text" ref={this.inputRef}/>
+          <button onClick={this.addTodo}>Add #{this.props.length}</button>
         </div>
       }
     }
