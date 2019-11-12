@@ -32,12 +32,21 @@
     }
 
     /*
-      组件将要挂载
-      基本没啥用了（即将被废弃）
+      根据props来生成new state
+
+      当state的变化和props相关就使用。
+      如果不相关，就不会用。
     */
-    componentWillMount() {
-      console.log('componentWillMount');
+    static getDerivedStateFromProps(prevState, nextProps) {
+      // prevState 之前的状态
+      // nextProps 最新的props
+
+      // 返回新state
+      return {
+        
+      }
     }
+    
     /*
       组件已经挂载
         1. 发送ajax请求
@@ -65,13 +74,6 @@
       return true;
       // 不更新
       // return false;
-    }
-
-    /*
-      即将被废弃
-    */
-    componentWillUpdate() {
-      console.log('componentWillUpdate');
     }
 
     componentDidUpdate() {
