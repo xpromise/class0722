@@ -17,6 +17,114 @@
     2. 输入用户名密码后, 点击登陆提示输入信息
     3. 不提交表单
   */
+
+  // #region 非受控组件（通过ref收集表单数据）
+  /* class Form extends React.Component {
+
+    constructor() {
+      super();
+      // 初始化
+      this.usernameRef = React.createRef();
+      this.passwordRef = React.createRef();
+    }
+    // 是上面的简写
+    usernameRef = React.createRef();
+    passwordRef = React.createRef();
+    
+
+    login = (event) => {
+      // form不发送请求，禁止默认行为
+      event.preventDefault();
+      // 获取用户名 / 密码
+      const usernameInput = this.usernameRef.current;
+      const passwordInput = this.passwordRef.current;
+
+      const username = usernameInput.value;
+      const password = passwordInput.value;
+
+      alert(`用户名: ${username}  密码: ${password}`);
+
+      // 清空数据
+      usernameInput.value = '';
+      passwordInput.value = '';
+    }
+
+    render() {
+      return <form action="xxx" onSubmit={this.login}>
+        用户名: <input type="text" ref={this.usernameRef}/>
+        密码: <input type="password" ref={this.passwordRef}/>
+        <input type="submit" value="登录" /> 
+      </form>
+    }
+  } */
+  // #endregion
+
+  // 受控组件(通过state和onChange事件方式收集表单数据)
+  class Form extends React.Component {
+    // 初始化状态
+    state = {
+      username: '',
+      password: ''
+    }
+
+
+    login = (event) => {
+      // form不发送请求，禁止默认行为
+      event.preventDefault();
+      // 获取用户名 / 密码
+      const {username, password} = this.state; 
+
+      alert(`用户名: ${username}  密码: ${password}`);
+
+      // 清空数据
+      this.setState({
+        username: '',
+        password: ''
+      })
+      
+    }
+
+    /* usernameChange = (event) => {
+      // 获取输入框的value
+      const username = event.target.value.trim();
+      // 更新状态
+      this.setState({
+        username
+      })
+    }
+
+    passwordChange = (event) => {
+      // 获取输入框的value
+      const password = event.target.value.trim();
+      // 更新状态
+      this.setState({
+        password
+      })
+    }  */
+
+    // 高阶函数 
+    handleChange = (key) => {
+      return (event) => {
+        const value = event.target.value.trim();
+        this.setState({
+          [key]: value
+        })
+      }
+    }
+
+    render() {
+      const {username, password} = this.state;
+      return <form action="xxx" onSubmit={this.login}>
+        用户名: <input type="text" onChange={this.handleChange('username')} value={username}/>
+        密码: <input type="password" onChange={this.handleChange('password')} value={password}/>
+        <input type="submit" value="登录" /> 
+      </form>
+    }
+  }
+  
+
+  ReactDOM.render(<Form />, document.getElementById('example'));
+
 </script>
 </body>
 </html>
