@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>10_ComponentLife</title>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+  /*
+  需求: 自定义组件
+    1. 让指定的文本做显示/隐藏的动画
+    2. 切换时间为2S
+    3. 点击按钮从界面中移除组件界面
+   */
+  
+  /*
+    所有生命周期函数（除了static以外）this都指向组件的实例对象
+    而自定义其他函数，this默认是undefined
+  */
+  class Test extends React.Component {
+    state = {
+      opacity: 1
+    }
+
+    componentDidMount() {
+      this.timer = setInterval(() => {
+        let opacity = this.state.opacity - 0.01;
+        if (opacity <= 0) opacity = 1;
+        this.setState({
+          opacity
+        })
+      }, 1000 / 60)
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.timer);
+    }
+
+    handleClick = () => {
+      ReactDOM.unmountComponentAtNode(document.getElementById('example'));
+    }
+
+    render() {
+      const {opacity} = this.state;
+      return <div>
+        <h1 style={{opacity, fontSize: 50}}>React学不会，怎么办?</h1>
+        <button onClick={this.handleClick}>不活了</button>
+      </div>
+    }
+  }
+
+  ReactDOM.render(<Test />, document.getElementById('example'));
+
+</script>
+</body>
+</html>
