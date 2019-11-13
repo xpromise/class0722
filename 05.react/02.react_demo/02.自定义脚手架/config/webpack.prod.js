@@ -28,7 +28,7 @@ module.exports = {
     rules: [
       // 写loader的配置
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/, // 排除node_modules不检查
         enforce: 'pre', // 优先执行
         loader: "eslint-loader",
@@ -103,16 +103,16 @@ module.exports = {
             }
           },
           {
-            test: /\.js$/,
+            test: /\.(js|jsx)$/,
             exclude: /(node_modules)/,
             use: [
-              'thread-loader', // 开启多进程打包
+              // 'thread-loader', // 开启多进程打包
               {
                 loader: 'babel-loader',
                 options: {
                   presets: [
                     [
-                      '@babel/preset-react', 
+                      '@babel/preset-react',
                       {
                         useBuiltIns: 'usage', // 实现按需加载
                         corejs: {
@@ -186,7 +186,7 @@ module.exports = {
       // '$css': resolve(__dirname, '../src/css'),
       // '$less': resolve(__dirname, '../src/less')
     },
-    // extensions: ['.js', '.json', '.less', '.css'] // 可以省略文件后缀名
+    extensions: ['.js', '.jsx', '.json'] // 可以省略文件后缀名
   },
   // target: 'web',
   // externals: {

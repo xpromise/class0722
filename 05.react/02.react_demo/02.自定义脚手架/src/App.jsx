@@ -8,7 +8,7 @@ import React from 'react';
 
 // 引入图片
 import logo from './assets/images/1.jpg';
-// 引入样式
+// 引入样式s
 import './assets/css/App.css';
 
 // 定义组件

@@ -60,7 +60,7 @@ module.exports = {
         }
       },
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/, // 排除node_modules不检查
         enforce: 'pre', // 优先执行
         loader: "eslint-loader",
@@ -69,17 +69,15 @@ module.exports = {
         }
       },
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-react'], // 编译react语法
-              cacheDirectory: true, // 开启缓存文件夹
-            }
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-react'], // 编译react语法
+            cacheDirectory: true, // 开启缓存文件夹
           }
-        ]
+        }]
       }
     ]
   },
@@ -105,6 +103,6 @@ module.exports = {
       // '$css': resolve(__dirname, '../src/css'),
       // '$less': resolve(__dirname, '../src/less')
     },
-    // extensions: ['.js', '.json'] // 可以省略文件后缀名
+    extensions: ['.js', '.jsx', '.json'] // 可以省略文件后缀名
   },
 }
