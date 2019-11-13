@@ -7,7 +7,6 @@
 <body>
 <div id="example"></div>
 <br>
-
 <script type="text/javascript" src="../js/react.development.js"></script>
 <script type="text/javascript" src="../js/react-dom.development.js"></script>
 <script type="text/javascript" src="../js/babel.min.js"></script>
@@ -34,7 +33,7 @@
     }
 
     render () {
-      console.log('render()')
+      // console.log('render()')
       return (
         <p>
           Hello, <input type="text" placeholder="Your name here"/>!&nbsp;
@@ -44,10 +43,18 @@
     }
   }
 
+  // console.log(<HelloWorld/>);
+  
+
   ReactDOM.render(
     <HelloWorld/>,
     document.getElementById('example')
   )
+
+  // const dom = <div id="title"><p>hello</p><span>span</span></div>;
+  // console.log(dom);
+  
+
 </script>
 </body>
 </html>
