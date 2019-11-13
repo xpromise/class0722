@@ -128,6 +128,10 @@ module.exports = {
                     ]
                   ],
                   cacheDirectory: true, // 开启缓存文件夹
+                  plugins: [
+                    // 解决不识别 state = {} 语法
+                    "@babel/plugin-proposal-class-properties"
+                  ]
                 }
               }
             ]
