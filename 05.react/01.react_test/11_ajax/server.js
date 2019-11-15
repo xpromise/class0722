@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 
-app.get('/search/repostories', (req, res) => {
+app.get('/search/repositories', (req, res) => {
   const {
     q,
     sort
@@ -10,7 +10,10 @@ app.get('/search/repostories', (req, res) => {
 
   if (!q || !sort) {
     res.status(401).send('缺少请求参数');
+    return;
   }
+  // 解决跨域
+  // res.set('access-control-allow-origin', '*');
 
   res.json({
     items: [{
