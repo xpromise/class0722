@@ -1,8 +1,12 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
-import PubSub from "pubsub-js";
 
 export default class List extends Component {
+  static propTypes = {
+    searchName: PropTypes.string.isRequired
+  };
+
   state = {
     isLoading: false,
     users: []
@@ -649,46 +653,43 @@ export default class List extends Component {
 
   */
   //#endregion
-  componentDidMount() {
-    PubSub.subscribe("UPDATE_SEARCH_NAME", (msg, data) => {
-      /*
-        msg 就是消息名称 UPDATE_SEARCH_NAME
-        data 发送过来的数据
-      */
-      // 发送请求
-      this.setState({
-        isLoading: true
-      });
 
-      axios
-        .get(`https://api.github.com/search/users?q=${data}`)
-        .then(response => {
-          this.setState({
-            isLoading: false,
-            users: response.data.items.map(user => {
-              return {
-                login: user.login,
-                html_url: user.html_url,
-                avatar_url: user.avatar_url
-              };
-            })
-          });
-        })
-        .catch(error => {
-          console.log(error);
-
-          this.setState({
-            isLoading: false
-          });
-
-          alert("网络错误~");
-        });
+  // 在哪里发送ajax请求
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    // console.log(this.props); // 获取上一次的值
+    // 加载loading状态
+    this.setState({
+      isLoading: true
     });
+    
+    axios
+      .get(`https://api.github.com/search/users?q=${nextProps.searchName}`)
+      .then(response => {
+        this.setState({
+          isLoading: false,
+          users: response.data.items.map(user => {
+            return {
+              login: user.login,
+              html_url: user.html_url,
+              avatar_url: user.avatar_url
+            };
+          })
+        });
+      })
+      .catch(error => {
+        console.log(error);
+
+        this.setState({
+          isLoading: false
+        });
+
+        alert("网络错误~");
+      });
   }
 
   render() {
-    console.log("list render");
-
+    console.log('list render');
+    
     const { isLoading, users } = this.state;
 
     if (isLoading) {
