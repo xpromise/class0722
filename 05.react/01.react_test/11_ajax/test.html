@@ -1,27 +1,84 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>11_ajax</title>
 </head>
-<body>
-<div id="example"></div>
 
-<script type="text/javascript" src="../js/react.development.js"></script>
-<script type="text/javascript" src="../js/react-dom.development.js"></script>
-<script type="text/javascript" src="../js/babel.min.js"></script>
-<script type="text/babel">
-  /*
+<body>
+  <div id="example"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
+  <script type="text/babel">
+    /*
   需求:
     1. 界面效果如下
     2. 根据指定的关键字在github上搜索匹配的最受关注的库
     3. 显示库名, 点击链接查看库
-    4. 测试接口: https://api.github.com/search/repositories?q=r&sort=stars
+    4. 测试接口: 
   */
 
+  class Search extends React.Component {
+    state = {
+      isLoading: false,
+      repo: {}
+    }
+
+    componentDidMount() {
+      // axios.get('https://api.github.com/search/repositories?q=r&sort=stars')
+      // 发送请求之前，切换成loading
+      this.setState({
+        isLoading: true
+      })
+
+      axios.get('https://api.github.com/search/repositories', {
+        params: {
+          q: 'r',
+          sort: 'stars'
+        }
+      })
+        .then((response) => {
+          // 发送请求成功
+          console.log(response);
+          const { html_url, name } = response.data.items[0];
+          // 将请求成功的数据更新成
+          this.setState({
+            isLoading: false,
+            repo: {
+              name,
+              html_url
+            }
+          })
+        })
+        .catch((error) => {
+          // 发送请求失败
+          this.setState({
+            isLoading: false
+          })
+          // 提示错误
+          console.log(error);
+          
+          alert('网络出现故障，请刷新试试~');
+        })
+    }
+
+    render() {
+      const {isLoading, repo : { name, html_url }} = this.state;
+
+      if (isLoading) {
+        return <h1>loading....</h1>
+      }
+
+      return <h1>most star repo is <a href={html_url}>{name}</a></h1>
+    }
+  }
+
+  ReactDOM.render(<Search />, document.getElementById('example'));
 </script>
 </body>
+
 </html>
-
-
-
