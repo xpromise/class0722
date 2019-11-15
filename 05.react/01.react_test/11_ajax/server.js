@@ -13,7 +13,7 @@ app.get('/search/repositories', (req, res) => {
     return;
   }
   // 解决跨域
-  // res.set('access-control-allow-origin', '*');
+  res.set('access-control-allow-origin', '*');
 
   res.json({
     items: [{
