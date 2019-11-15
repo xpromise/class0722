@@ -655,12 +655,13 @@ export default class List extends Component {
   //#endregion
 
   // 在哪里发送ajax请求
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     // console.log(this.props); // 获取上一次的值
     // 加载loading状态
     this.setState({
       isLoading: true
     });
+    
     axios
       .get(`https://api.github.com/search/users?q=${nextProps.searchName}`)
       .then(response => {
@@ -687,6 +688,8 @@ export default class List extends Component {
   }
 
   render() {
+    console.log('list render');
+    
     const { isLoading, users } = this.state;
 
     if (isLoading) {
