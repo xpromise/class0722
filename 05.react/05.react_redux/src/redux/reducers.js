@@ -1,15 +1,19 @@
 /*  
   根据prevState和action来生成newState的函数
 */
+import {
+  INCREMENT,
+  DECREMENT
+} from './action-types';
 
 // reducers函数名称和要管理的状态数据名称一样
 function number(prevState = 0, action) {
   console.log(prevState, action);
 
   switch (action.type) {
-    case 'INCREMENT':
+    case INCREMENT:
       return prevState + action.data;
-    case 'DECREMENT':
+    case DECREMENT:
       return prevState - action.data;
     default:
       return prevState;

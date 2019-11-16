@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import store from "./redux/store";
-import { increment } from "./redux/action-creators";
+import { increment, decrement } from "./redux/action-creators";
 
 export default class App extends Component {
   state = {
@@ -21,6 +21,33 @@ export default class App extends Component {
     store.dispatch(action);
   };
 
+  decrement = () => {
+    // 1. 调用action creators生成action对象
+    const action = decrement(this.state.value);
+    // 2. 调用store.dispatch(action) 触发更新
+    store.dispatch(action);
+  };
+
+  incrementIfOdd = () => {
+    const number = store.getState();
+    if ((number & 1) === 1) {
+      // if (number % 2 === 1) {
+      // 1. 调用action creators生成action对象
+      const action = increment(this.state.value);
+      // 2. 调用store.dispatch(action) 触发更新
+      store.dispatch(action);
+    }
+  };
+
+  incrementAsync = () => {
+    setTimeout(() => {
+      // 1. 调用action creators生成action对象
+      const action = increment(this.state.value);
+      // 2. 调用store.dispatch(action) 触发更新
+      store.dispatch(action);
+    }, 1000);
+  };
+
   render() {
     // 从redux中读取状态数据
     // redux一上来默认会调用一次reducers函数 (undefined, {type: "@@redux/INITd.q.i.u.x"})
@@ -38,9 +65,9 @@ export default class App extends Component {
           <option value="3">3</option>
         </select>
         <button onClick={this.increment}>+</button>
-        <button>-</button>
-        <button>increment if odd</button>
-        <button>increment async</button>
+        <button onClick={this.decrement}>-</button>
+        <button onClick={this.incrementIfOdd}>increment if odd</button>
+        <button onClick={this.incrementAsync}>increment async</button>
       </div>
     );
   }

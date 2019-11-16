@@ -6,12 +6,15 @@
         data: 操作数据
       }
 */
+
+import { INCREMENT, DECREMENT } from './action-types';
+
 export const increment = (data) => ({
-  type: 'INCREMENT',
+  type: INCREMENT,
   data
 });
 
 export const decrement = (data) => ({
-  type: 'DECREMENT',
+  type: DECREMENT,
   data
 });
