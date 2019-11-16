@@ -2,11 +2,11 @@
   路由的配置文件
 */
 
-import Home from '../components/home'
-import Pins from '../components/pins'
-import Topic from '../components/topic'
-import Books from '../components/books'
-import Events from '../components/events'
+import Home from '../components/home';
+import Pins from '../components/pins';
+import Topic from '../components/topic';
+import Books from '../components/books';
+import Events from '../components/events';
 
 const routes = [{
     title: '首页',
