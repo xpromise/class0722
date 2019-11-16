@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>10_ComponentLife</title>
+</head>
+
+<body>
+  <div id="example"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <script type="text/babel">
+
+    class Test extends React.Component {
+      state = {
+        num: 1,
+      }
+
+      btnRef = React.createRef();
+
+      /*
+        面试题： setState是同步还是异步？
+        答案：setState即是同步也是异步，看情况：
+          1. 如果在生命周期函数、React合成事件回调函数中，setState是异步的
+            多次setState会合并成一次（最后一次生效）
+          2. 如果在定时器、原生DOM事件回调函数中，setState是同步的  
+
+          this.setState({xxx}) 
+          this.setState(() => {}) 
+          this.setState({xxx}, () => {})  后面回调函数更新流程全部完毕后才触发（componentDidUpdate）
+      */
+
+      componentDidMount() {
+        /* this.setState({
+          num: this.state.num + 1
+        }, () => {
+          console.log(this.state.num); // 3
+        })
+
+
+        this.setState({
+          num: this.state.num + 2
+        }, () => {
+          console.log(this.state.num); // 3
+        }) */
+        
+        this.setState((prevState) => {
+          console.log(prevState); // { num: 1 }
+          return {
+            num: prevState.num + 1
+          };
+        }) 
+
+        console.log(this.state.num); // 1
+
+        this.setState((prevState) => {
+          console.log(prevState);  // { num: 2 }
+          return {
+            num: prevState.num + 2
+          };
+        }) 
+
+        console.log(this.state.num); // 1
+
+      }
+
+
+      /* componentDidMount() {
+        // 异步更新
+        this.setState({
+          num: this.state.num + 1
+        })
+
+        console.log(this.state.num); // 1
+
+        this.setState({
+          num: this.state.num + 2
+        })
+
+        console.log(this.state.num); // 1
+
+        setTimeout(() => {
+          // 异步代码会等setState更新完才执行
+          console.log(this.state.num); // 3
+          // 同步更新
+          this.setState({
+            num: this.state.num + 1
+          })
+
+          console.log(this.state.num); // 4
+
+          this.setState({
+            num: this.state.num + 1
+          })
+
+          console.log(this.state.num); // 5
+        }, 0)
+      } */
+
+      /* componentDidMount() {
+        this.btnRef.current.addEventListener('click', () => {
+          // 同步更新
+          this.setState({
+            num: this.state.num + 1
+          })
+
+          console.log(this.state.num); // 1
+
+          this.setState({
+            num: this.state.num + 2
+          })
+
+          console.log(this.state.num); // 1
+        })
+      } */
+      
+      /* handleClick = () => {
+        // 异步更新
+        this.setState({
+          num: this.state.num + 1
+        })
+
+        console.log(this.state.num); // 1
+
+        this.setState({
+          num: this.state.num + 2
+        })
+
+        console.log(this.state.num); // 1
+      } */
+
+      render() {
+        console.log('render');
+        
+        // 多次setState会合并成一次（最后一次生效）
+        // console.log(this.state.num); // 1 2
+        
+        return <div>
+          <button onClick={this.handleClick}>React合成事件</button>  
+          <button ref={this.btnRef}>原生DOM事件</button>
+        </div>
+      }
+    }
+
+  ReactDOM.render(<Test />, document.getElementById('example'));
+
+</script>
+</body>
+
+</html>
