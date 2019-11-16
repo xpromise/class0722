@@ -60,6 +60,9 @@ export default class App extends Component {
                     当地址变成path， 就会加载/显示component
                   */}
                   <Route path="/about" component={About} exact />
+                  {/* 
+                    当二级路由在一级路由里面时，一级路由不能写exact属性，这样会导致二级路由永远不生效
+                  */}
                   <Route path="/home" component={Home} />
                   {/* 
                     Redirect 默认匹配所有路径，修改浏览器记录
