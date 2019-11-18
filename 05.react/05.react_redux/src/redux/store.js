@@ -6,10 +6,22 @@
     store.subscribe(listener)
 */
 import {
-  createStore
+  createStore,
+  applyMiddleware
 } from 'redux';
+import thunk from 'redux-thunk';
+import {
+  composeWithDevTools
+} from 'redux-devtools-extension';
+
 import reducers from './reducers';
 // 创建store
-const store = createStore(reducers);
+let store = null;
+// 区分开发环境和生产环境
+if (process.env.NODE_ENV === 'development') {
+  store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
+} else {
+  store = createStore(reducers, applyMiddleware(thunk));
+}
 // 暴露出去
 export default store;

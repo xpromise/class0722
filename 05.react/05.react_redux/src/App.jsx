@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { increment, decrement } from "./redux/action-creators";
+import { increment, decrement, incrementAsync } from "./redux/action-creators";
 
 // UI组件：没有redux内容
 class App extends Component {
@@ -31,9 +31,7 @@ class App extends Component {
   };
 
   incrementAsync = () => {
-    setTimeout(() => {
-      this.props.increment(this.state.value);
-    }, 1000);
+    this.props.incrementAsync(this.state.value);
   };
 
   render() {
@@ -93,10 +91,9 @@ class App extends Component {
 // const NewComponent = connect(mapStateToProps, mapDispatchToProps)(App);
 
 // export default NewComponent;
-
 export default connect(
   // 状态数据
   state => ({ number: state.number }),
   // 更新状态的数据方法
-  { increment, decrement }
+  { increment, decrement, incrementAsync }
 )(App);
