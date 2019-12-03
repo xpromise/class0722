@@ -1,0 +1,99 @@
+/* modal样式 */
+.x-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.x-modal-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.x-modal-wrap {
+  position: relative;
+  top: 100px;
+  z-index: 1001;
+  margin: 0 auto;
+  width: 300px;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: #fff;
+}
+
+.x-modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.x-modal-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.x-modal-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 64px;
+  height: 64px;
+  line-height: 1;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.x-modal-body {
+  padding: 20px;
+}
+
+.x-modal-footer {
+  padding: 10px;
+  border-top: 1px solid #e8e8e8;
+  text-align: right;
+}
+
+.x-modal-btn {
+  padding: 5px 15px;
+  border-radius: 4px;
+  border: 1px solid #d9d9d9;
+  outline: 0;
+  background-color: transparent;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.x-btn-primary {
+  margin-left: 10px;
+  background-color: pink;
+  color: #fff;
+}
+
+/* cssTransition 样式 */
+.x-modal-enter {
+  opacity: 0;
+}
+
+.x-modal-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms;
+}
+
+.x-modal-exit {
+  opacity: 1;
+}
+
+.x-modal-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms;
+}
